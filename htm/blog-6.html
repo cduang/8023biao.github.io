@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Android 游戏内存修改</title>
+    <!-- 样式表 -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/responsive.css" rel="stylesheet">
+
+    <!--代码高亮-->
+    <link href="../css/monokai-sublime.min.css" rel="stylesheet" type="text/css">
+
+    <!--图标-->
+    <link rel="shortcut icon" href="http://q1.qlogo.cn/g?b=qq&nk=2949933863&s=640" type="image/x-icon">
+    <link rel="icon" href="http://q1.qlogo.cn/g?b=qq&nk=2949933863&s=640" type="image/x-icon">
+    <!-- 响应 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!--[if lt IE 9]><script src="js/html5shiv.js"></script><![endif]-->
+    <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+</head>
+
+<body>
+
+    <div class="page-wrapper default-version">
+
+        <!-- 预加载 -->
+        <div class="preloader"></div>
+
+        <div class="page-background">
+            <div class="image-1"><img src="../images/icons/shape/icon-1.png" class="now-in-view" alt=""></div>
+            <div class="image-7"><img src="../images/icons/shape/icon-7.png" class="now-in-view" alt=""></div>
+            <!-- <canvas id="canvas"></canvas>-->
+        </div>
+
+        <!-- 移动菜单 -->
+        <div class="mobile-menu">
+            <div class="container">
+                <!--导航外部-->
+                <div class="nav-outer clearfix">
+
+                    <!--主菜单 -->
+
+                    <!-- 主菜单结束-->
+                </div>
+                <!--导航结束--->
+            </div>
+        </div>
+        <!-- 移动菜单结束 -->
+
+        <div class="card-outer">
+            <div class="scroll-box">
+                <div class="container" data-animation-in="fadeInLeft" data-animation-out="fadeOutLeft">
+                    <div class="card-wrapper">
+                        <!--PC迷你主页-->
+                        <div class="author-info" style="background-image:url(../images/background/1.jpg)">
+                            <div class="image"><img src="http://q1.qlogo.cn/g?b=qq&nk=2949933863&s=640" alt=""></div>
+                            <div class="author">
+                                <h3>BIAO</h3>
+                                <div class="text">This guy was lazy and left nothing</div>
+                            </div>
+
+                            <ul class="social-icon-two">
+
+                                <li><a href="https://github.com/8023biao"><span class="fa fa-github"></span></a></li>
+                                <li><a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2222048023@qq.com"><span
+                                            class="fa fa-envelope"></span></a></li>
+                                <li><a href="../htm/blog.html"><span class="fa fa-address-card-o"></span></a></li>
+                            </ul>
+                        </div>
+                        <!--PC迷你主页结束-->
+                        <div class="card-inner-box offsetleft" style="margin-top:0px;margin-bottom:0px">
+
+
+                            <!-- 内容 -->
+                            <div class="card-blog single-post card-item active" id="blog"
+                                style="background: transparent;width: 100%;height: 100%;margin-top: 0px;padding-top: 0px">
+                                <div class="card-inner">
+
+                                    <div class="news-block">
+                                        <div class="inner-box">
+                                            <div class="image">
+                                                <img src="http://inews.gtimg.com/newsapp_match/0/10084016618/0" alt=""
+                                                    style="border-radius: 6px;">
+                                            </div>
+
+                                            <div class="lower-content">
+                                                <h4>Android 游戏内存修改</h4>
+
+                                                <div class="text">
+                                                    <p>
+
+                                                        <br>游戏内存修改工具:<br>
+                                                        Windows <a href="https://cheatengine.org/">CE</a>|Android <a
+                                                            href="https://gameguardian.net/">GG</a>|IOS <a
+                                                            href="https://igg-server.herokuapp.com/">IGG</a><br><br>
+
+
+                                                        GG需要root&虚拟空间APP&root的虚拟机,IGG需要越狱。<br>
+                                                        IGG详情说明请看其他博主的文章:<a
+                                                            href="https://www.mdnice.com/writing/b834b6b2c54d41938cb458795519a09d/"><strong>iMemEditor/iGameGuardian</strong></a><br><br>
+                                                    </p>
+
+                                                    <hr>
+
+                                                    <p>
+                                                        在Windows上我们可以用CE生成exe修改器程序,非常方便和快捷。<br>
+                                                        在GG修改器上也可以生成lua或txt文件。以便减去繁杂的操作。<br>
+                                                        IGG不知道没用过...<br><br>
+
+                                                        GG不自带生成APK修改器,但是可以自己写一个！<br>
+                                                        由于不会java和C++,我用Androlua编写,菜了我(欲哭无泪)<br><br>
+
+                                                        我的方法:用Androlua写个APK程序,用C4droid里写好代码并调用编译出的二进制文件
+
+                                                    <h6>建议使用Android Studio 新建C++项目,使用MemoryTools更好。
+
+                                                    </h6><br>
+
+                                                    <p>
+                                                        需要以下东西:<br>
+                                                        Android系统的手机(系统4.4.4以上 需root&虚拟空间APP&root的虚拟机)<br>
+
+                                                        <a
+                                                            href="https://binmt.lanzoui.com/b01bivkzc">MT管理器</a>(文件管理)<br>
+
+                                                        <a href="https://magiskcn.com/">magisk</a>(root管理)<br>
+                                                        <a
+                                                            href="https://www.coolapk.com/apk/me.weishu.exp">太极</a>(虚拟空间APP)<br>
+                                                        <a
+                                                            href="https://biao8023.lanzouu.com/iCuqy06jgowd">Androlua</a>(ide)<br>
+                                                        <a
+                                                            href="https://blog.qaiu.top/archives/c4droid">C4droid</a>(c/c++
+                                                        ide)<br>
+                                                        <a href="https://gameguardian.net/">GG修改器</a>(内存修改器)<br>
+
+                                                        <a
+                                                            href="https://github.com/Sabin-Rusu/MemoryTools/">MemoryTools</a>(C++
+                                                        内存工具)<br><br>
+
+                                                        root&虚拟空间APP&root的虚拟机: 为了读取内存&修改的权限。<br>
+                                                        MT管理器: 编辑代码和移动文件等。<br>
+                                                        Androlua: 安卓上使用lua语言制作APK的ide。<br>
+                                                        C4droid: 安卓上的C/C++ ide, 修改&编译MemoryTools。<br>
+                                                        GG修改器: 获取内存地址,以便使用与查找。<br>
+                                                        MemoryTools: C++内存工具,用C4droid编译成二进制文件。<br><br>
+
+                                                        有root就不用安装虚拟空间APP或root的虚拟机,你想安装也可以。<br>
+                                                        把上面的APP安装到手机里,并解压MemoryTools<br>
+
+
+                                                    </p>
+
+                                                    <div class="image">
+                                                        <img src="https://s1.ax1x.com/2022/06/17/XbUT6U.jpg" alt=""
+                                                            style="border-radius: 6px;">
+                                                    </div><br>
+
+                                                    <p>MT管理器,magisk,Androlua,C4droid,GG修改器。</p>
+
+                                                    <div class="image">
+                                                        <img src="https://s1.ax1x.com/2022/06/17/XbaUjU.jpg" alt=""
+                                                            style="border-radius: 6px;">
+                                                    </div><br>
+
+                                                    <p>MemoryTools工具<br><br>
+
+                                                        准备工作全部完成。<br>
+                                                    </p>
+
+                                                    <hr>
+
+
+                                                    <P>example.cpp:</P>
+                                                    <pre><code><textarea>
+ #include <iostream>
+ #include "MemoryTools.h"
+                                                                
+//this is just a simple example of how to use search offset and write, you can do more things with it
+//这只是一个简单的例子，如何使用搜索偏移和写入，你可以用它做更多的事情     
+
+int main(int argc, char *argv[]) {
+    initXMemoryTools(
+    /*process name*/
+    "my.process.package",
+    /*mode root/no root*/
+    MODE_NO_ROOT
+    /*MODE_ROOT - for root
+    *建议用 MODE_NO_ROOT 模式 它可以通用 root和虚拟机空间
+    */
+    );
+                                                                
+/*
+Value types:
+                                                                
+TYPE_DWORD,
+TYPE_FLOAT,
+TYPE_DOUBLE,
+TYPE_WORD,
+TYPE_BYTE,
+TYPE_QWORD
+*/
+                                                                
+/*
+Search Ranges:
+                                                                
+ALL,
+B_BAD,
+C_ALLOC,
+C_BSS,
+C_DATA,
+C_HEAP,
+JAVA_HEAP,
+A_ANONYMOUS,
+CODE_SYSTEM,
+STACK,
+ASHMEM
+*/
+                                                                
+SetSearchRange(ALL);//搜索内存选择(全部)
+MemorySearch("1"/*value*/, TYPE_DWORD);//内存搜索(搜索值1,数据类型)
+MemoryOffset("2"/*value*/, 2/*offset*/, TYPE_DWORD);//内存偏移(搜索值2,偏移量,数据类型)
+MemoryWrite("0"/*value*/, 2/*offset*/, TYPE_DWORD);//内存修改(修改值,第一个到这个的偏移值,数据类型)
+ClearResults();//清除链表，释放空间
+//MemoryTools.h里面都有中文注释
+
+return 0;
+}
+                                                                
+</textarea></code></pre><br>
+
+                                                    <p>GG寻找特征码,用C4droid编译成二进制教程:</p>
+                                                    <iframe
+                                                        src="https://player.bilibili.com/player.html?aid=419342087&bvid=BV18V411p7oE&cid=373714485&page=1"
+                                                        allowfullscreen="allowfullscreen" width="100%" height="500"
+                                                        scrolling="no" frameborder="0"
+                                                        sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
+
+                                                    <p>用C4droid把cpp编译成二进制教程:</p>
+                                                    <iframe
+                                                        src="https://player.bilibili.com/player.html?aid=468044670&bvid=BV1n5411U7Lo&cid=573600630&page=1"
+                                                        allowfullscreen="allowfullscreen" width="100%" height="500"
+                                                        scrolling="no" frameborder="0"
+                                                        sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
+
+
+                                                    <P>
+                                                        编译出二进制文件,用MT管理器把文件复制到Androlua工程路径下
+                                                        我的工程名为 辅助 ,所以我移动到这个路径下。
+                                                    </P>
+
+                                                    <div class="image">
+                                                        <img src="https://s1.ax1x.com/2022/06/17/XbgjN8.png" alt=""
+                                                            style="border-radius: 6px;">
+                                                    </div><br>
+
+                                                    <hr>
+
+                                                    <p>打开Androlua 辅助 工程 main.lua:</p>
+
+                                                    <pre><code class="lua"><textarea>
+    require "import"
+    import "android.app.*"
+    import "android.os.*"
+    import "android.widget.*"
+    import "android.view.*"
+
+    import "layout"
+    --activity.setTitle('title')
+    --activity.setTheme(android.R.style.Theme_Holo_Light)
+    activity.setContentView(loadlayout(layout))
+    
+    
+    --申请root权限
+    local Permission=os.execute("su")
+    
+    --有root(工程下路径,字符串)
+    function ROOT(path, string)
+      xpcall(function()
+    
+        local data = activity.getLuaDir().."/"
+        os.execute("chmod 777 " .. data .. path)
+        Runtime.getRuntime().exec("su -c " .. data .. path)
+        print(string)
+    
+      end,function(e)
+        print(e)
+      end)
+    end
+    
+    --没有root(工程下路径,字符串)
+    function no_ROOT(path ,string)
+      xpcall(function()
+    
+        local data = activity.getLuaDir().."/"
+        os.execute("chmod 777 " .. data .. path)
+        Runtime.getRuntime().exec(data .. path)
+        print(string)
+    
+      end,function(e)
+        print(e)
+      end)
+    end
+    
+    --执行({table},string)
+    function execute(a,b)
+      for c,v in pairs(a)
+        if Permission then
+          ROOT(v,b)
+         else
+          no_ROOT(v,b)
+        end
+      end
+    end
+    
+    --点击事件
+    button.onClick=function()
+    execute({"example"},"执行成功")
+    end
+    
+</textarea></code></pre><br>
+
+                                                    <p>layout.aly:</p>
+
+                                                    <pre><code><textarea>
+
+    {
+        LinearLayout;
+        layout_height="fill";
+        gravity="center";
+        orientation="vertical";
+        layout_width="fill";
+        {
+          Button;
+          id="button";
+          Text="点击执行"
+        };
+      };
+      
+
+</textarea></code></pre><br>
+
+                                                    <div class="image">
+                                                        <img src="https://s1.ax1x.com/2022/06/17/Xb4I9f.jpg" alt=""
+                                                            style="border-radius: 6px;">
+                                                    </div><br>
+
+                                                    <p>
+                                                        最后一步:点击右上角的三个小点选择 工程-打包-安装<br>
+                                                        有什么不懂的地方可以去B站搜索或者bing一下。<br>
+                                                        我是root的手机所以我没有使用框架和虚拟机。<br>
+
+
+                                                    </p>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 标签-->
+                                    <ul class="share-box">
+                                        <li><strong>标签:</strong></li>
+                                        <li><a>Android 游戏内存修改</a></li>
+
+                                    </ul>
+
+
+
+                                </div>
+                            </div>
+                            <!-- 内容结束 -->
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!--结束页面-->
+
+
+    <script src="../js/jquery.js"></script>
+
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="../js/owl.js"></script>
+    <script src="../js/wow.js"></script>
+    <script src="../js/appear.js"></script>
+    <script src="../js/jquery.fancybox.js"></script>
+    <script src="../js/element-in-view.js"></script>
+    <script src="../js/knob.js"></script>
+    <script src="../js/validate.js"></script>
+    <script src="../js/mousemoveparallax.js"></script>
+    <script src="../js/pagenav.js"></script>
+    <script src="../js/jquery-type.js"></script>
+    <!--<script src="js/particle-alone.js"></script>轻量的粒子动效-->
+    <script src="../js/jquery.nicescroll.min.js"></script>
+    <script src="../js/script.js"></script>
+
+  
+    <script src="../js/myscript.js"></script>
+
+    <!--代码高亮-->
+    <script src="../js/highlight.min.js"></script>
+
+    <script src="../js/pre_code.js"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+</body>
+
+</html>

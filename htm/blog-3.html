@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>vanta.js</title>
+    <!-- 样式表 -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/responsive.css" rel="stylesheet">
+
+    <!--代码高亮-->
+    <link href="../css/monokai-sublime.min.css" rel="stylesheet" type="text/css">
+
+    <!--图标-->
+    <link rel="shortcut icon" href="http://q1.qlogo.cn/g?b=qq&nk=2949933863&s=640" type="image/x-icon">
+    <link rel="icon" href="http://q1.qlogo.cn/g?b=qq&nk=2949933863&s=640" type="image/x-icon">
+
+    <!-- 响应 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!--[if lt IE 9]><script src="js/html5shiv.js"></script><![endif]-->
+    <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+</head>
+
+<body>
+
+    <div class="page-wrapper default-version">
+
+        <!-- 预加载 -->
+        <div class="preloader"></div>
+
+        <div class="page-background">
+            <div class="image-1"><img src="../images/icons/shape/icon-1.png" class="now-in-view" alt=""></div>
+            <div class="image-7"><img src="../images/icons/shape/icon-7.png" class="now-in-view" alt=""></div>
+            <!-- <canvas id="canvas"></canvas>-->
+        </div>
+
+        <!-- 移动菜单 -->
+        <div class="mobile-menu">
+            <div class="container">
+                <!--导航外部-->
+                <div class="nav-outer clearfix">
+
+                    <!--主菜单 -->
+
+                    <!-- 主菜单结束-->
+                </div>
+                <!--导航结束--->
+            </div>
+        </div>
+        <!-- 移动菜单结束 -->
+
+        <div class="card-outer">
+            <div class="scroll-box">
+                <div class="container" data-animation-in="fadeInLeft" data-animation-out="fadeOutLeft">
+                    <div class="card-wrapper">
+                        <!--PC迷你主页-->
+                        <div class="author-info" style="background-image:url(../images/background/1.jpg)">
+                            <div class="image"><img src="http://q1.qlogo.cn/g?b=qq&nk=2949933863&s=640" alt=""></div>
+                            <div class="author">
+                                <h3>BIAO</h3>
+                                <div class="text">This guy was lazy and left nothing</div>
+                            </div>
+
+                            <ul class="social-icon-two">
+
+                                <li><a href="https://github.com/8023biao"><span class="fa fa-github"></span></a></li>
+                                <li><a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2222048023@qq.com"><span
+                                            class="fa fa-envelope"></span></a></li>
+                                <li><a href="../htm/blog.html"><span class="fa fa-address-card-o"></span></a></li>
+                            </ul>
+                        </div>
+                        <!--PC迷你主页结束-->
+                        <div class="card-inner-box offsetleft" style="margin-top:0px;margin-bottom:0px">
+
+
+                            <!-- 内容 -->
+                            <div class="card-blog single-post card-item active" id="blog"
+                                style="background: transparent;width: 100%;height: 100%;margin-top: 0px;padding-top: 0px">
+                                <div class="card-inner">
+
+                                    <div class="news-block">
+                                        <div class="inner-box">
+
+                                            <div style="width:100%;height: 300px" id="blog_4"></div>
+
+
+                                            <div class="lower-content">
+                                                <h4>vanta.js</h4>
+
+                                                <div class="text">
+                                                    <p>
+                                                        官网(演示地址):<a
+                                                            href="https://www.vantajs.com/"><strong>访问</strong></a><br>
+                                                        Git地址:<a
+                                                            href="https://github.com/tengbao/vanta/"><strong>访问</strong></a><br><br>
+
+                                                        优点：<br>
+                                                        适用于 vanilla JS、React、Angular、Vue 等。<br>
+                                                        效果可以与鼠标/触摸输入交互。<br>
+                                                        效果参数和颜色可以修改。<br>
+                                                        缺点：动画类型少。<br>
+                                                    </p>
+                                                    <p>脚本标签的基本用法:</p>
+                                                    <pre><code><textarea>
+
+<!--如果这个不能用就下载项目导入本地使用（第二个我打不开）
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.21/dist/vanta.waves.min.js"></script>
+-->
+<script src="js/three.r119.min.js"></script>
+<script src="js/vanta.waves.min.js"></script>
+
+<script>
+    VANTA.WAVES('#my-background')
+</script>
+</textarea></code></pre><br>
+
+                                                    <p>更多选项：</p>
+                                                    <pre><code><textarea>
+    <script>                                                       
+        //waves动画的更多设置                                        
+        VANTA.WAVES({
+            el: '#my-background', // 元素选择器字符串或DOM对象引用
+            color: 0x000000,//颜色
+            waveHeight: 20,//波动高度
+            shininess: 50,//亮度
+            waveSpeed: 1.5,//波动速度
+            zoom: 0.75//缩放
+        })
+    </script>
+</textarea></code></pre><br>
+                                                    <p>
+                                                        el：容器元素。<br>
+                                                        Vanta 画布将作为此元素的子级追加，并将假定此元素的宽度和高度。（如果需要全屏画布，请确保此容器元素为全屏。<br>
+                                                        此容器可以有其他子级。其他子项将作为前景内容显示在 Vanta 画布的前面。<br>
+
+                                                        mouseControls：（默认为 true）设置为 false 可禁用鼠标控件。仅适用于某些效果。<br>
+
+                                                        touchControls：（默认为 true）设置为 false 可禁用触摸控件。仅适用于某些效果。<br>
+
+                                                        gyroControls：（默认为 false）设置为 true 以允许陀螺仪模仿鼠标。仅适用于某些效果。<br>
+
+                                                        注意：每个效果都有自己的特定参数。在 <a
+                                                            href="https://www.vantajs.com">www.vantajs.com</a> 探索它们！
+                                                    </p><br>
+
+                                                    <P>初始化后更新选项：</P>
+                                                    <pre><code><textarea>
+    const effect = VANTA.WAVES({
+        el: '#my-background',
+        color: 0x000000
+      })
+      
+      // 稍后，当您想用新选项更新正在进行的动画时
+      effect.setOptions({
+        color: 0xff88cc
+      })
+      
+      // 之后，如果容器改变了大小，并且您希望强制Vanta在新的画布大小上重新绘制
+      effect.resize()
+</textarea></code></pre><br>
+
+                                                    <p>清理：</p>
+                                                    <pre><code><textarea>
+
+    const effect = VANTA.WAVES('#my-background')
+    effect.destroy() // 例如，在React的组件willunmount中调用这个
+</textarea></code></pre><br>
+
+                                                    <hr>
+                                                    <div style="width:100%;height: 300px" id="demo_1"></div>
+
+                                                    <div style="width:100%;height: 300px" id="demo_2"></div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 标签-->
+                                    <ul class="share-box">
+                                        <li><strong>标签:</strong></li>
+                                        <li><a>vantajs</a></li>
+                                    </ul>
+
+
+
+                                </div>
+                            </div>
+                            <!-- 内容结束 -->
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!--结束页面-->
+
+
+    <script src="../js/jquery.js"></script>
+
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="../js/owl.js"></script>
+    <script src="../js/wow.js"></script>
+    <script src="../js/appear.js"></script>
+    <script src="../js/jquery.fancybox.js"></script>
+    <script src="../js/element-in-view.js"></script>
+    <script src="../js/knob.js"></script>
+    <script src="../js/validate.js"></script>
+    <script src="../js/mousemoveparallax.js"></script>
+    <script src="../js/pagenav.js"></script>
+    <script src="../js/jquery-type.js"></script>
+    <!--<script src="js/particle-alone.js"></script>轻量的粒子动效-->
+    <script src="../js/jquery.nicescroll.min.js"></script>
+    <script src="../js/script.js"></script>
+
+   
+
+    <script src="../js/myscript.js"></script>
+
+
+    <!--代码高亮-->
+    <script src="../js/highlight.min.js"></script>
+
+    <script src="../js/pre_code.js"></script>
+
+    <!--vantajs-->
+    <script src="../js/three.r119.min.js"></script>
+    <script src="../js/vanta.birds.min.js"></script>
+    <script src="../js/vanta.waves.min.js"></script>
+    <script src="../js/vanta.halo.min.js"></script>
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <script>
+        VANTA.BIRDS({
+            el: "#blog_4",//ID
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color1: 0x000,
+        })
+
+        VANTA.WAVES({
+            el: "#demo_1",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            shininess: 51.00,
+            waveHeight: 16.50,
+            zoom: 1
+        })
+
+        VANTA.HALO({
+            el: "#demo_2",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            baseColor: 0x3af0,
+            backgroundColor: 0x90928,
+            amplitudeFactor: 3.00
+        })
+    </script>
+
+
+</body>
+
+</html>
