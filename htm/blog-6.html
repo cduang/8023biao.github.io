@@ -111,15 +111,16 @@
                                                         IGG不知道没用过...<br><br>
 
                                                         GG不自带生成APK修改器,但是可以自己写一个！<br>
-                                                        由于不会java和C++,我用Androlua编写,菜了我(欲哭无泪)<br><br>
+                                                        由于不会java和C/C++,我用Androlua编写,菜了我(欲哭无泪)<br><br>
 
-                                                        我的方法:用Androlua写个APK程序,用C4droid里写好代码并调用编译出的二进制文件
+                                                        我的方法:使用Androlua写个APK程序,调用C4droid编译出的二进制文件
 
                                                     <h6>建议使用Android Studio 新建C++项目,使用MemoryTools更好。
 
                                                     </h6><br>
-
-                                                    <p>
+                                                    <hr>
+                                                    <h4>准备工作</h4>
+                                                    <p><br>
                                                         需要以下东西:<br>
                                                         Android系统的手机(系统4.4.4以上 需root&虚拟空间APP&root的虚拟机)<br>
 
@@ -137,11 +138,11 @@
                                                         <a href="https://gameguardian.net/">GG修改器</a>(内存修改器)<br>
 
                                                         <a
-                                                            href="https://github.com/Sabin-Rusu/MemoryTools/">MemoryTools</a>(C++
+                                                            href="https://biao8023.lanzouu.com/idBLB06l1nuh/">MemoryTools</a>(C++
                                                         内存工具)<br><br>
 
                                                         root&虚拟空间APP&root的虚拟机: 为了读取内存&修改的权限。<br>
-                                                        MT管理器: 编辑代码和移动文件等。<br>
+                                                        MT管理器: 编辑代码和管理文件等。<br>
                                                         Androlua: 安卓上使用lua语言制作APK的ide。<br>
                                                         C4droid: 安卓上的C/C++ ide, 修改&编译MemoryTools。<br>
                                                         GG修改器: 获取内存地址,以便使用与查找。<br>
@@ -161,75 +162,188 @@
                                                     <p>MT管理器,magisk,Androlua,C4droid,GG修改器。</p>
 
                                                     <div class="image">
-                                                        <img src="https://s1.ax1x.com/2022/06/17/XbaUjU.jpg" alt=""
+                                                        <img src="https://s1.ax1x.com/2022/06/18/XLDCFg.jpg" alt=""
                                                             style="border-radius: 6px;">
                                                     </div><br>
 
-                                                    <p>MemoryTools工具<br><br>
+                                                    <p>下载并解压MemoryTools工具<br><br>
 
                                                         准备工作全部完成。<br>
                                                     </p>
 
                                                     <hr>
 
+                                                    <h4>使用GG修改器</h4>
 
-                                                    <P>example.cpp:</P>
+                                                    <p>寻找“特征码”教程:</p>
+
+                                                    <iframe
+                                                        src="https://player.bilibili.com/player.html?aid=295417214&bvid=BV1eF411q7KN&cid=476018856&page=1"
+                                                        allowfullscreen="allowfullscreen" width="100%" height="500"
+                                                        scrolling="no" frameborder="0"
+                                                        sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
+                                                    <hr>
+
+                                                    <p>先用GG找到不变的值并记录下来。我已跳过寻找“特征码”的过程。<br>
+                                                        这些是我找到不变的“特征码”。GG联合搜索9个不变按顺序相邻的Float值
+                                                    </p>
+
+                                                    <div class="image">
+                                                        <img src="https://s1.ax1x.com/2022/06/18/XLRiM4.jpg" alt=""
+                                                            style="border-radius: 6px;">
+                                                    </div><br>
+
+                                                    <p>A内存 9个Float值 </p>
+
+                                                    <div class="image">
+                                                        <img src="https://s1.ax1x.com/2022/06/18/XLRowR.jpg" alt=""
+                                                            style="border-radius: 6px;">
+                                                    </div><br>
+
+                                                    <p>长按转到主“特征码”的地址 </p>
+
+                                                    <div class="image">
+                                                        <img src="https://s1.ax1x.com/2022/06/18/XLWLEn.png" alt=""
+                                                            style="border-radius: 6px;">
+                                                    </div><br>
+
+                                                    <p>主“特征码”下滑到需要改动的地址<br>
+                                                        这里因为修改地址附近的值全是"0"不好搜索。我截取上面的为“特征码”方便我查找<br>
+                                                        虽然间隔过远但是记住偏移量就行了，建议使用修改地址附近的“特征码”。
+                                                    </p>
+
+                                                    <div class="image">
+                                                        <img src="https://s1.ax1x.com/2022/06/18/XLqEef.png" alt=""
+                                                            style="border-radius: 6px;">
+                                                    </div><br>
+
+                                                    <div class="image">
+                                                        <img src="https://s1.ax1x.com/2022/06/18/XLqMSs.png" alt=""
+                                                            style="border-radius: 6px;">
+                                                    </div><br>
+
+                                                    <p>长按地址选择“偏移量计算”来检查下偏移量对不对</p>
+
+                                                    <div class="image">
+                                                        <img src=" https://s1.ax1x.com/2022/06/18/XLqyTO.png" alt=""
+                                                            style="border-radius: 6px;">
+                                                    </div><br>
+
+                                                    <p>不要勾选HEX这个是16进制的偏移</p>
+
+                                                    <div class="image">
+                                                        <img src="https://s1.ax1x.com/2022/06/18/XLqtkF.png" alt=""
+                                                            style="border-radius: 6px;">
+                                                    </div><br>
+
+                                                    <div class="image">
+                                                        <img src="https://s1.ax1x.com/2022/06/18/XLqdp9.png" alt=""
+                                                            style="border-radius: 6px;">
+                                                    </div><br>
+
+                                                    <p>把特征码和偏移全部保存下来。<br>写在cpp文件里面</p>
+
+                                                    <div class="image">
+                                                        <img src="https://s1.ax1x.com/2022/06/18/XLxO9U.jpg" alt=""
+                                                            style="border-radius: 6px;">
+                                                    </div><br>
+
+                                                    <hr>
+
+                                                    <h4>使用C4droid</h4>
+
+                                                    <P>demo.cpp:</P>
                                                     <pre><code><textarea>
- #include <iostream>
- #include "MemoryTools.h"
-                                                                
-//this is just a simple example of how to use search offset and write, you can do more things with it
-//这只是一个简单的例子，如何使用搜索偏移和写入，你可以用它做更多的事情     
-
-int main(int argc, char *argv[]) {
-    initXMemoryTools(
-    /*process name*/
-    "my.process.package",
-    /*mode root/no root*/
-    MODE_NO_ROOT
-    /*MODE_ROOT - for root
-    *建议用 MODE_NO_ROOT 模式 它可以通用 root和虚拟机空间
+    #include "MemoryTools.h"//导入必备头文件
+    int main(int argc,char **argv)
+    {
+    int gs;//用来存储数据个数
+    void *jg;
+    PACKAGENAME *bm="com.ZZLB.PVZ_BT";//填写你的游戏包名
+    BypassGameSafe();//绕过游戏保护?
+    SetSearchRange(A_ANONMYOUS);//A内存
+    puts("开始内存搜索...");
+    
+    /*
+    *这个游戏包名是PVZ_BT植物大战僵尸同人版,作者:宅宅萝卜,7723下载链接 http://s.7723.cn/202206251105/11cfde93bdb1137486ea21797ae89fcf/game/84178/
+    *功能:增加无尽模式的太阳demo
+    *
+    *
+    *主搜索值,以这个值为基准偏移,这个为0,往上一个(-4 十进制),往下一个就+4(十进制)。-20,-16,-12,-8,-4,0(主搜索值),4,8,12,16,20...以此类推
+    *搜索值建议为 1.40129846e-45;2.2222048023e-32;3.14159265358e-11e等等的值预防搜索的值太多。
+    *MemorySearch(内存搜索)(bm(包名),"搜索值",&gs(不可改，每次搜索就过滤掉没用的，留下有用的),FLOAT(搜索类型,仅支持FLOAT和DWORD两类型,如果类型不同没关系,用GG转到地址查看这两个类型就行了));
+    *
+    *内存偏移(包名,搜索值,往下偏移一个地址(+4)偏移可用16进制,&gs,类型),这一步是为了过滤掉没有用的内存地址,这个内存偏移建议越多越好
+    *MemoryOffset(bm,"1.40129846e-45",4,&gs,FLOAT);//往下偏移1个1*4=4
+    *
+    *内存写入(包名,需要修改的值,距离主搜索值的偏移值,类型),注意这里不是冻结!
+    * MemoryWrite(bm,"8023",72,FLOAT);
+    *
+    *MemoryTools.h里面都有中文说明与注释
+    *
+    *这些值退出游戏和杀死游戏进程都不能变,变了就不能用。这些不变的值在GG里面怎么叫特征码?我也不懂，先这样叫吧。(还是CE好用...)
+    *
     */
-    );
-                                                                
-/*
-Value types:
-                                                                
-TYPE_DWORD,
-TYPE_FLOAT,
-TYPE_DOUBLE,
-TYPE_WORD,
-TYPE_BYTE,
-TYPE_QWORD
-*/
-                                                                
-/*
-Search Ranges:
-                                                                
-ALL,
-B_BAD,
-C_ALLOC,
-C_BSS,
-C_DATA,
-C_HEAP,
-JAVA_HEAP,
-A_ANONYMOUS,
-CODE_SYSTEM,
-STACK,
-ASHMEM
-*/
-                                                                
-SetSearchRange(ALL);//搜索内存选择(全部)
-MemorySearch("1"/*value*/, TYPE_DWORD);//内存搜索(搜索值1,数据类型)
-MemoryOffset("2"/*value*/, 2/*offset*/, TYPE_DWORD);//内存偏移(搜索值2,偏移量,数据类型)
-MemoryWrite("0"/*value*/, 2/*offset*/, TYPE_DWORD);//内存修改(修改值,第一个到这个的偏移值,数据类型)
-ClearResults();//清除链表，释放空间
-//MemoryTools.h里面都有中文注释
 
-return 0;
-}
+    MemorySearch(bm,"1.26116862e-44",&gs,FLOAT);
+    printf("共搜索%d个数据\n",gs);
+    
+    /*往搜索值的基准向下偏移*/
+
+    MemoryOffset(bm,"1.40129846e-45",4,&gs,FLOAT);//往下偏移1个地址 1*4=4
+    printf("共偏移%d个数据\n",gs);
+    
+    MemoryOffset(bm,"0",8,&gs,FLOAT);//往下偏移2个地址 2*4=8
+    printf("共偏移%d个数据\n",gs);
+    
+    MemoryOffset(bm,"0",12,&gs,FLOAT);//往下偏移3个地址 3*4=12
+    printf("共偏移%d个数据\n",gs);
+    
+    MemoryOffset(bm,"0",16,&gs,FLOAT);//往下偏移4个地址 4*4=16
+    printf("共偏移%d个数据\n",gs);
+    
+    /*往搜索值的基准向上偏移*/
+    
+    MemoryOffset(bm,"0",-4,&gs,FLOAT);//往上偏移1个地址 -1*4=(-4)
+    printf("共偏移%d个数据\n",gs);
+    
+    MemoryOffset(bm,"0",-8,&gs,FLOAT);往上偏移2个地址 -2*4=(-8)
+    printf("共偏移%d个数据\n",gs);
+    
+    MemoryOffset(bm,"0",-12,&gs,FLOAT);往上偏移3个地址 -3*4=(-12)
+    printf("共偏移%d个数据\n",gs);
+    
+    MemoryOffset(bm,"90",-16,&gs,FLOAT);往上偏移4个地址 -4*4=(-16)
+    printf("共偏移%d个数据\n",gs);
+    
+    
+    Print();//打印Res里面内容
+    MemoryWrite(bm,"8023",72,FLOAT);//内存写入(包名,需要修改的值,十进制往下偏移72,数据类型)
+    
+    
+    puts("");puts("修改完成");
+    ClearResults();//清除链表释放空间
+    }
                                                                 
 </textarea></code></pre><br>
+
+
+                                                    <p>C4droid 右上角导出 选择 导出 二进制 记住路径</p>
+
+                                                    <div class="image">
+                                                        <img src="https://s1.ax1x.com/2022/06/18/XLvMqI.jpg" alt=""
+                                                            style="border-radius: 6px;">
+                                                    </div><br>
+
+                                                    <P>
+                                                        编译出二进制文件,用MT管理器把文件复制到Androlua工程路径下
+                                                        我的工程名为 demo ,所以我移动到这个路径下。
+                                                    </P>
+
+                                                    <div class="image">
+                                                        <img src="https://s1.ax1x.com/2022/06/18/XLvGi8.png" alt=""
+                                                            style="border-radius: 6px;">
+                                                    </div><br>
 
                                                     <p>GG寻找特征码,用C4droid编译成二进制教程:</p>
                                                     <iframe
@@ -246,81 +360,11 @@ return 0;
                                                         sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
 
 
-                                                    <P>
-                                                        编译出二进制文件,用MT管理器把文件复制到Androlua工程路径下
-                                                        我的工程名为 辅助 ,所以我移动到这个路径下。
-                                                    </P>
-
-                                                    <div class="image">
-                                                        <img src="https://s1.ax1x.com/2022/06/17/XbgjN8.png" alt=""
-                                                            style="border-radius: 6px;">
-                                                    </div><br>
-
                                                     <hr>
 
-                                                    <p>打开Androlua 辅助 工程 main.lua:</p>
+                                                    <h4>使用Androlua</h4>
 
-                                                    <pre><code class="lua"><textarea>
-    require "import"
-    import "android.app.*"
-    import "android.os.*"
-    import "android.widget.*"
-    import "android.view.*"
-
-    import "layout"
-    --activity.setTitle('title')
-    --activity.setTheme(android.R.style.Theme_Holo_Light)
-    activity.setContentView(loadlayout(layout))
-    
-    
-    --申请root权限
-    local Permission=os.execute("su")
-    
-    --有root(工程下路径,字符串)
-    function ROOT(path, string)
-      xpcall(function()
-    
-        local data = activity.getLuaDir().."/"
-        os.execute("chmod 777 " .. data .. path)
-        Runtime.getRuntime().exec("su -c " .. data .. path)
-        print(string)
-    
-      end,function(e)
-        print(e)
-      end)
-    end
-    
-    --没有root(工程下路径,字符串)
-    function no_ROOT(path ,string)
-      xpcall(function()
-    
-        local data = activity.getLuaDir().."/"
-        os.execute("chmod 777 " .. data .. path)
-        Runtime.getRuntime().exec(data .. path)
-        print(string)
-    
-      end,function(e)
-        print(e)
-      end)
-    end
-    
-    --执行({table},string)
-    function execute(a,b)
-      for c,v in pairs(a)
-        if Permission then
-          ROOT(v,b)
-         else
-          no_ROOT(v,b)
-        end
-      end
-    end
-    
-    --点击事件
-    button.onClick=function()
-    execute({"example"},"执行成功")
-    end
-    
-</textarea></code></pre><br>
+                                                    <P>Androlua 新建个工程 配置如下</P>
 
                                                     <p>layout.aly:</p>
 
@@ -342,15 +386,118 @@ return 0;
 
 </textarea></code></pre><br>
 
+                                                    <p>main.lua:</p>
+
+                                                    <pre><code class="lua"><textarea>
+require "import"
+import "android.app.*"
+import "android.os.*"
+import "android.widget.*"
+import "android.view.*"
+import "layout"
+--activity.setTitle('title')
+--activity.setTheme(android.R.style.Theme_Holo_Light)
+activity.setContentView(loadlayout(layout))
+
+
+--申请root权限
+local Permission=os.execute("su")
+
+--有root(工程下路径,字符串)
+function ROOT(path, string)
+  xpcall(function()
+
+    local data = activity.getLuaDir().."/"
+    os.execute("chmod 777 " .. data .. path)
+    Runtime.getRuntime().exec("su -c " .. data .. path)
+    print(string)
+
+  end,function(e)
+    print(e)
+  end)
+end
+
+--没有root(工程下路径,字符串)
+function no_ROOT(path ,string)
+  xpcall(function()
+
+    local data = activity.getLuaDir().."/"
+    os.execute("chmod 777 " .. data .. path)
+    Runtime.getRuntime().exec(data .. path)
+    print(string)
+
+  end,function(e)
+    print(e)
+  end)
+end
+
+--执行({table},string)
+function execute(a,b)
+  for c,v in pairs(a)
+    if Permission then
+      ROOT(v,b)
+     else
+      no_ROOT(v,b)
+    end
+  end
+end
+
+--点击事件
+button.onClick=function()
+  execute({"demo"},"执行成功")
+end
+    
+</textarea></code></pre><br>
+
+
+
                                                     <div class="image">
-                                                        <img src="https://s1.ax1x.com/2022/06/17/Xb4I9f.jpg" alt=""
+                                                        <img src="https://s1.ax1x.com/2022/06/18/XOSJJK.jpg" alt=""
                                                             style="border-radius: 6px;">
                                                     </div><br>
 
-                                                    <p>
-                                                        最后一步:点击右上角的三个小点选择 工程-打包-安装<br>
-                                                        有什么不懂的地方可以去B站搜索或者bing一下。<br>
-                                                        我是root的手机所以我没有使用框架和虚拟机。<br>
+                                                    <p>点击右上角的三个小点选择 工程-打包-安装</p>
+
+
+                                                    <div class="image">
+                                                        <img src="https://s1.ax1x.com/2022/06/18/XOpW9K.jpg" alt=""
+                                                            style="border-radius: 6px;">
+                                                    </div><br>
+
+                                                    <div class="image">
+                                                        <img src="https://s1.ax1x.com/2022/06/18/XOpbNt.jpg" alt=""
+                                                            style="border-radius: 6px;">
+                                                    </div><br>
+
+                                                    <hr>
+                                                    <h4>功能测试部分</h4>
+
+                                                    <p>打开游戏进入无尽模式界看见只有50太阳</p>
+
+                                                    <div class="image">
+                                                        <img src="https://s1.ax1x.com/2022/06/18/XO9f5q.jpg" alt=""
+                                                            style="border-radius: 6px;">
+                                                    </div><br>
+
+                                                    <p>打开刚才打包的demo APK,点击执行按钮</p>
+
+                                                    <div class="image">
+                                                        <img src="https://s1.ax1x.com/2022/06/18/XO9OaR.jpg" alt=""
+                                                            style="border-radius: 6px;">
+                                                    </div><br>
+
+                                                    <p>回到游戏界面,修改成功</p>
+
+                                                    <div class="image">
+                                                        <img src="https://s1.ax1x.com/2022/06/18/XOCJJ0.jpg" alt=""
+                                                            style="border-radius: 6px;">
+                                                    </div><br>
+
+                                                    <hr>
+                                                    
+                                                    <p>有什么不懂的地方可以去B站搜索或者bing一下。<br>
+                                                        我是root的手机,我没有使用框架和虚拟机。<br>
+                                                    </p>
 
 
                                                     </p>
@@ -403,7 +550,7 @@ return 0;
     <script src="../js/jquery.nicescroll.min.js"></script>
     <script src="../js/script.js"></script>
 
-  
+
     <script src="../js/myscript.js"></script>
 
     <!--代码高亮-->
