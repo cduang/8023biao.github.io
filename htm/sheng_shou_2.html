@@ -92,6 +92,22 @@
 
 
 
+--分享
+function Sharing(path)
+  FileName=tostring(File(path).Name)
+  ExtensionName=FileName:match("%.(.+)")
+  Mime=MimeTypeMap.getSingleton().getMimeTypeFromExtension(ExtensionName)
+  intent = Intent()
+  intent.setAction(Intent.ACTION_SEND)
+  intent.setType(Mime)
+  file = File(path)
+  uri = Uri.fromFile(file)
+  intent.putExtra(Intent.EXTRA_STREAM,uri)
+  intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+  activity.startActivity(Intent.createChooser(intent, "分享到:"))
+end
+
+
     ------main code end
 
 
