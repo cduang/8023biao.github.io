@@ -1,4 +1,11 @@
+    --[[
+这个文件为圣手main主代码
+我直接名码传输，你想拿就拿。
+为什么不加密？加密太长了，这个也不是啥稀奇东西
 
+
+by:biao
+]]
 
     layout={
       LinearLayout;
@@ -20,9 +27,30 @@
         };
         {
           Button;
-          text="加群";
-          id="button_2";
+          text="刷新游客";
+          id="button_4";
         };
+
+      };
+
+      {
+        LinearLayout;
+        gravity="center";
+        orientation="horizontal";
+        layout_height="-2";
+        layout_width="fill";
+
+        {
+          Button;
+          text="转32位";
+          id="to32";
+        };
+        {
+          Button;
+          text="转64位";
+          id="to64";
+        };
+
       };
       {
         LinearLayout;
@@ -36,14 +64,31 @@
           id="button_3";
         };
 
-             {
+        {
+          Button;
+          text="加群讨论";
+          id="button_2";
+        };
+      };
+      {
+        LinearLayout;
+        gravity="center";
+        orientation="horizontal";
+        layout_height="-2";
+        layout_width="fill";
+        {
+          Button;
+          text="打开游戏";
+          id="button_6";
+        };
+
+        {
           Button;
           text="下载地址";
           id="button_5";
         };
 
       };
-     
       {
         LinearLayout;
         orientation="horizontal";
@@ -69,8 +114,13 @@
     --activity.setTheme(android.R.style.Theme_Holo_Light)
     activity.setContentView(loadlayout(layout))
 
-    local nr="刚开始学习的第一天，大家多多见谅，轻喷，谢谢"..
-"\n唯二的两个功能可能已经失效，能力有限。".."\nby:biao"
+    local nr="刚开始学习的第二天，大家多多见谅，轻喷，谢谢"..
+    "\n唯二的两个功能可能已经失效，能力有限。\n\n"..
+    "刷新访客,转32,转64是测试功能，有问题请反馈。\n"..
+    "由于二进制由群主提供，我只负责软件问题，所以很难更新功能\n"..
+    "希望大家可以提供些帮助，谢谢。\n"..
+
+    "\nby:biao"
 
 
     text.setText(nr)
@@ -80,9 +130,64 @@
     设置主题()--自定义封装代码
 
 
-
     -----事件
 
+
+    to32.onClick=function()
+      local local mod=读取缓存("模式")
+      if mod=="root" then
+
+        local data=[[pm path com.sofunny.Sausage|sed -E  's/(.*):(.*)/\2/'|xargs pm install -r --abi armeabi-v7a]]
+
+        xpcall(function()
+          Runtime.getRuntime().exec("su -c " .. data)
+          print("转32位成功")
+        end,function(e)
+
+          提示文字("发现错误",e.."\n\n ","反馈",
+          function()
+            复制文本(e.."\n\n")
+            提示("已复制错误信息",1)
+            QQ(2176909931)
+          end)
+
+        end)
+
+       elseif mod==nil then
+        print("请先点击开启按钮选择模式")
+       else
+        print("没有root权限")
+      end
+
+    end
+
+
+    to64.onClick=function()
+      local local mod=读取缓存("模式")
+      if mod=="root" then
+
+        local data=[[pm path com.sofunny.Sausage|sed -E  's/(.*):(.*)/\2/'|xargs pm install -r --abi arm64-v8a]]
+
+        xpcall(function()
+          Runtime.getRuntime().exec("su -c " .. data)
+          print("转64成功")
+        end,function(e)
+
+          提示文字("发现错误",e.."\n\n ","反馈",
+          function()
+            复制文本(e.."\n\n")
+            提示("已复制错误信息",1)
+            QQ(2176909931)
+          end)
+
+        end)
+
+       elseif mod==nil then
+        print("请先点击开启按钮选择模式")
+       else
+        print("没有root权限")
+      end
+    end
 
     button.onClick=function()
 
@@ -104,7 +209,7 @@
 
     button_2.onClick=function()
       pcall(function()
-        QQ群(760072331)
+        QQ群(757754019)
       end)
     end
 
@@ -114,11 +219,75 @@
       end)
     end
 
+    button_4.onClick=function()
+
+      local mod=读取缓存("模式")
+
+      if mod=="no_root" then
+        local path="/data/user/0/com.sofunny.Sausage/shared_prefs/*"
+
+        xpcall(function()
+          Runtime.getRuntime().exec("rm -r" .. path)
+          print("游客已刷新\n请重新登录")
+        end,function(e)
+
+          提示文字("发现错误",e.."\n\n ","反馈",
+          function()
+            复制文本(e.."\n\n")
+            提示("已复制错误信息",1)
+            QQ(2176909931)
+          end)
+
+        end)
+
+       elseif mod=="root" then
+
+
+        local path="/data/data/com.sofunny.Sausage/shared_prefs/*"
+
+        xpcall(function()
+          Runtime.getRuntime().exec("su -c rm -r " .. path)
+          print("游客已刷新\n请重新登录")
+        end,function(e)
+
+          提示文字("发现错误",e.."\n\n ","反馈",
+          function()
+            复制文本(e.."\n\n")
+            提示("已复制错误信息",1)
+            QQ(2176909931)
+          end)
+
+        end)
+
+       elseif mod==nil then
+        print("请先点击开启按钮选择模式")
+       else--错误
+
+        local e="mod :\n"..mod
+
+        提示文字("发现错误",e.."\n\n ","反馈",
+        function()
+          复制文本(e.."\n\n")
+          提示("已复制错误信息",1)
+          QQ(2176909931)
+        end)
+
+      end
+    end
+
+
 
     button_5.onClick=function()
       浏览器打开("https://biao8023.lanzouu.com/iFNGu06mxueb")
     end
 
+
+    button_6.onClick=function()
+      local packageName="com.sofunny.Sausage"
+      local manager = activity.getPackageManager()
+      local open = manager.getLaunchIntentForPackage(packageName)
+      this.startActivity(open)
+    end
 
     ------main code end
 
