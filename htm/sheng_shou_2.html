@@ -36,25 +36,14 @@
           id="button_3";
         };
 
-        {
-          Button;
-          text="分享";
-          id="button_4";
-        };
-      };
-      {
-        LinearLayout;
-        gravity="center";
-        orientation="horizontal";
-        layout_height="-2";
-        layout_width="fill";
-        {
+             {
           Button;
           text="下载地址";
           id="button_5";
         };
 
       };
+     
       {
         LinearLayout;
         orientation="horizontal";
@@ -125,31 +114,9 @@
       end)
     end
 
-    button_4.onClick=function()
-      local apkph=activity.getPackageManager().getApplicationInfo(软件包名, 0).sourceDir
-      local apkph=tostring(apkph)
-      --分享app
-      Sharing(apkph)
-    end
 
     button_5.onClick=function()
       浏览器打开("https://biao8023.lanzouu.com/iFNGu06mxueb")
-    end
-
-
-    --分享
-    function Sharing(path)
-      FileName=tostring(File(path).Name)
-      ExtensionName=FileName:match("%.(.+)")
-      Mime=MimeTypeMap.getSingleton().getMimeTypeFromExtension(ExtensionName)
-      intent = Intent()
-      intent.setAction(Intent.ACTION_SEND)
-      intent.setType(Mime)
-      file = File(path)
-      uri = Uri.fromFile(file)
-      intent.putExtra(Intent.EXTRA_STREAM,uri)
-      intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-      activity.startActivity(Intent.createChooser(intent, "分享到:"))
     end
 
 
