@@ -25,6 +25,11 @@
           text="联系我";
           id="button_3";
         };
+    {
+      Button;
+      text="分享";
+      id="button_4";
+    };
       };
     };
     ---------layout
@@ -78,7 +83,12 @@
     end
 
 
-
+    button_4.onClick=function()
+      local apkph=activity.getPackageManager().getApplicationInfo(软件包名, 0).sourceDir
+      local apkph=tostring(apkph)
+      --分享app
+      Sharing(apkph)
+    end
 
 
 
@@ -303,7 +313,7 @@
     wmParams.height =WindowManager.LayoutParams.WRAP_CONTENT
 
     wmParams.alpha = 0.5;
-    wmParams.screenOrientation = 1;
+   -- wmParams.screenOrientation = 1;
 
 
     mainWindow=loadlayout(winlay)
