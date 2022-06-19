@@ -1,370 +1,374 @@
-layout={
-  LinearLayout;
-  orientation="vertical";
-  layout_width="fill";
-  layout_height="fill";
-  gravity="center";
-  {
-    LinearLayout;
-    gravity="center";
-    orientation="horizontal";
-    layout_height="-2";
-    layout_width="fill";
-    {
-      Button;
-      text="开启";
-      id="button";
-    };
-    {
-      Button;
-      text="加群";
-      id="button_2";
-    };
-    {
-      Button;
-      text="联系我";
-      id="button_3";
-    };
-  };
-};
----------layout
-
-
-
-----------main code
-
---activity.setTitle('title')
---activity.setTheme(android.R.style.Theme_Holo_Light)
-activity.setContentView(loadlayout(layout))
-
-
-
-全屏()--自定义封装代码
-设置主题()--自定义封装代码
-
-
-
------事件
-
-
-button.onClick=function()
-
-  -- 检查是否已经授予权限，大于6.0的系统适用，小于6.0系统默认打开，无需理会
-  if Build.VERSION.SDK_INT >= 23 and Settings.canDrawOverlays(this)~=true then
-    --     print("请给予悬浮窗权限 ")
-    local intent=Intent()
-    intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
-    intent.setData(Uri.parse("package:" .. activity.getPackageName()));
-    activity.startActivity(Intent(intent))
-    --  os.exit()
-    print("请给予悬浮窗权限")
-   else
-    modes()
-  end
-
-
-end
-
-button_2.onClick=function()
-  pcall(function()
-    QQ群(760072331)
-  end)
-end
-
-button_3.onClick=function()
-  pcall(function()
-    QQ(2176909931)
-  end)
-end
-
-
-
-
-
-
-------main code end
-
-
-
------悬浮窗
---最小化
-minlay={
-  LinearLayout,
-  layout_width="-2",
-  layout_height="-2",
-  {
-    CircleImageView;
-    src="res/icon/xfq.png";
-    layout_width="30dp";
-    layout_height="30dp";
-    id="Win_minWindow",
-  };
-}
-
-
---功能界面
-centerView={
-  LinearLayout;
-  layout_width="-2";
-  background="#0";
-  orientation="vertical";
-  layout_height="match_parent";
-  background="#00";--这里是悬浮窗的黑色背景可以自己改一下
-  {
-    ScrollView;
-    layout_width="match_parent";
-    layout_height="match_parent";
-    padding="10px";
-    OverScrollMode=2;
-    {
+    layout={
       LinearLayout;
-      layout_width="match_parent";
       orientation="vertical";
-
+      layout_width="fill";
+      layout_height="fill";
+      gravity="center";
       {
-        GridLayout;
-        layout_marginLeft="2dp";
-        layout_marginRight="8dp";
-        columnCount="2";
-        layout_marginTop="5dp";
-
+        LinearLayout;
+        gravity="center";
+        orientation="horizontal";
+        layout_height="-2";
+        layout_width="fill";
         {
-          CheckBox;
-          text="全枪射速";
-          textSize="15sp";
-          textColor="#ffffff";
-          id="全枪射速";
-          OnCheckedChangeListener=function(v)
-
-            if 全枪射速.checked==true then
-
-              execute({"res/so/ss"},"全枪射速:ON\n小蘑菇授权")
-
-             else
-
-              全枪射速.setChecked(true)
-              print("现在不可关闭\n请结束掉游戏和本程序进程")
-              --这里想关闭你再写个取消修改内存的二进制执行就行了
-
-            end
-          end;
+          Button;
+          text="开启";
+          id="button";
         };
-
         {
-          CheckBox;
-          text="全枪无后";
-          textSize="15sp";
-          textColor="#ffffff";
-          id="全枪无后";
-          OnCheckedChangeListener=function(v)
-
-            if 全枪无后.checked==true then
-
-              execute({"res/so/qqwh"},"全枪无后:ON")
-
-             else
-
-              全枪无后.setChecked(true)
-              print("现在不可关闭\n请结束掉游戏和本程序进程")
-              --这里想关闭你再写个取消修改内存的二进制执行就行了
-
-            end
-          end;
-
+          Button;
+          text="加群";
+          id="button_2";
         };
-
-
+        {
+          Button;
+          text="联系我";
+          id="button_3";
+        };
       };
-
-
     };
-  };
-}
+    ---------layout
+
+
+
+    ----------main code
+
+    --activity.setTitle('title')
+    --activity.setTheme(android.R.style.Theme_Holo_Light)
+    activity.setContentView(loadlayout(layout))
+
+
+
+    全屏()--自定义封装代码
+    设置主题()--自定义封装代码
+
+
+
+    -----事件
+
+
+    button.onClick=function()
+
+      -- 检查是否已经授予权限，大于6.0的系统适用，小于6.0系统默认打开，无需理会
+      if Build.VERSION.SDK_INT >= 23 and Settings.canDrawOverlays(this)~=true then
+        --     print("请给予悬浮窗权限 ")
+        local intent=Intent()
+        intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+        intent.setData(Uri.parse("package:" .. activity.getPackageName()));
+        activity.startActivity(Intent(intent))
+        --  os.exit()
+        print("请给予悬浮窗权限")
+       else
+        modes()
+      end
+
+
+    end
+
+    button_2.onClick=function()
+      pcall(function()
+        QQ群(760072331)
+      end)
+    end
+
+    button_3.onClick=function()
+      pcall(function()
+        QQ(2176909931)
+      end)
+    end
 
 
 
 
---悬浮窗展开的布局
-winlay={
-  LinearLayout,
-  layout_width="-2",
-  layout_height="-2",
-  {
-    CardView,
-    id="win_mainview",
-    layout_width="-2",
-    layout_height="-2",
-    layout_margin="5dp",
-    CardElevation="0",
-    {
+
+
+    ------main code end
+
+
+
+    -----悬浮窗
+    --最小化
+    minlay={
       LinearLayout,
-      layout_width="-1",
-      layout_height="-1",
-      orientation="vertical",
+      layout_width="-2",
+      layout_height="-2",
+      {
+        CircleImageView;
+        src="res/icon/xfq.png";
+        layout_width="30dp";
+        layout_height="30dp";
+        id="Win_minWindow",
+      };
+    }
+
+
+    --功能界面
+    centerView={
+      LinearLayout;
+      layout_width="-2";
+      background="#0";
+      orientation="vertical";
+      layout_height="match_parent";
+      background="#00";--这里是悬浮窗的黑色背景可以自己改一下
+      {
+        ScrollView;
+        layout_width="match_parent";
+        layout_height="match_parent";
+        padding="10px";
+        OverScrollMode=2;
+        {
+          LinearLayout;
+          layout_width="match_parent";
+          orientation="vertical";
+
+          {
+            GridLayout;
+            layout_marginLeft="2dp";
+            layout_marginRight="8dp";
+            columnCount="2";
+            layout_marginTop="5dp";
+
+            {
+              CheckBox;
+              text="全枪射速";
+              textSize="15sp";
+              textColor="#ffffff";
+              id="全枪射速";
+              OnCheckedChangeListener=function(v)
+
+                if 全枪射速.checked==true then
+
+                  execute({"res/so/ss"},"全枪射速:ON\n小蘑菇授权")
+
+                 else
+
+                  全枪射速.setChecked(true)
+                  print("现在不可关闭\n请结束掉游戏和本程序进程")
+                  --这里想关闭你再写个取消修改内存的二进制执行就行了
+
+                end
+              end;
+            };
+
+            {
+              CheckBox;
+              text="全枪无后";
+              textSize="15sp";
+              textColor="#ffffff";
+              id="全枪无后";
+              OnCheckedChangeListener=function(v)
+
+                if 全枪无后.checked==true then
+
+                  execute({"res/so/qqwh"},"全枪无后:ON")
+
+                 else
+
+                  全枪无后.setChecked(true)
+                  print("现在不可关闭\n请结束掉游戏和本程序进程")
+                  --这里想关闭你再写个取消修改内存的二进制执行就行了
+
+                end
+              end;
+
+            };
+
+
+          };
+
+
+        };
+      };
+    }
+
+
+
+
+    --悬浮窗展开的布局
+    winlay={
+      LinearLayout,
+      layout_width="-2",
+      layout_height="-2",
       {
         CardView,
-        layout_width="-1",
-        layout_height="30dp",
-        background="#ffffff",
-        radius=0,
+        id="win_mainview",
+        layout_width="-2",
+        layout_height="-2",
+        layout_margin="5dp",
+        CardElevation="0",
         {
           LinearLayout,
           layout_width="-1",
           layout_height="-1",
+          orientation="vertical",
           {
-            LinearLayout,
-            layout_weight="1",
-            layout_height="-1",
+            CardView,
+            layout_width="-1",
+            layout_height="30dp",
+            background="#ffffff",
+            radius=0,
             {
-              TextView,
-              id="win_move",
+              LinearLayout,
               layout_width="-1",
               layout_height="-1",
-              paddingLeft="5dp",
-              gravity="left|center",
-              textColor="#0",
-              singleLine=true,
-              Text="圣手免费辅助兼13.65",
-              textSize="14sp",
+              {
+                LinearLayout,
+                layout_weight="1",
+                layout_height="-1",
+                {
+                  TextView,
+                  id="win_move",
+                  layout_width="-1",
+                  layout_height="-1",
+                  paddingLeft="5dp",
+                  gravity="left|center",
+                  textColor="#0",
+                  singleLine=true,
+                  Text="圣手免费辅助兼13.65",
+                  textSize="14sp",
 
-            },
-          },
+                },
+              },
 
-          {
-            RippleLayout,
-            layout_height="-1",
-            layout_width="30dp",
-            rippleColor="#50555555",
-            {
-              ImageView,
-              layout_width="-1",
-              layout_height="-1",
-              scaleType="centerCrop",
-              padding="3dp",
-              src="res/icon/minimize.png",
-              ColorFilter="#55212121",
-              onClick="changeWindow",
+              {
+                RippleLayout,
+                layout_height="-1",
+                layout_width="30dp",
+                rippleColor="#50555555",
+                {
+                  ImageView,
+                  layout_width="-1",
+                  layout_height="-1",
+                  scaleType="centerCrop",
+                  padding="3dp",
+                  src="res/icon/minimize.png",
+                  ColorFilter="#55212121",
+                  onClick="changeWindow",
+                },
+              },
+              {
+                RippleLayout,
+                layout_height="-1",
+                layout_width="30dp",
+                rippleColor="#50555555",
+                {
+                  ImageView,
+                  layout_width="-1",
+                  layout_height="-1",
+                  scaleType="centerCrop",
+                  padding="3dp",
+                  src="res/icon/close.png",
+                  ColorFilter="#55212121",
+                  onClick="closes",
+                },
+              },
             },
           },
-          {
-            RippleLayout,
-            layout_height="-1",
-            layout_width="30dp",
-            rippleColor="#50555555",
-            {
-              ImageView,
-              layout_width="-1",
-              layout_height="-1",
-              scaleType="centerCrop",
-              padding="3dp",
-              src="res/icon/close.png",
-              ColorFilter="#55212121",
-              onClick="closes",
-            },
-          },
+          centerView, --这里是悬浮窗中间的布局
         },
       },
-      centerView, --这里是悬浮窗中间的布局
-    },
-  },
-}
+    }
 
 
-fkts={
-  LinearLayout;
-  layout_width="match_parent";
-  layout_height="match_parent";
-  {
-    SurfaceView;
-    layout_width="match_parent";
-    layout_height="match_parent";
-    id="Win";
-  };
-};
+    fkts={
+      LinearLayout;
+      layout_width="match_parent";
+      layout_height="match_parent";
+      {
+        SurfaceView;
+        layout_width="match_parent";
+        layout_height="match_parent";
+        id="Win";
+      };
+    };
 
 
 
-wmManager=activity.getSystemService(Context.WINDOW_SERVICE) --获取窗口管理器
+    wmManager=activity.getSystemService(Context.WINDOW_SERVICE) --获取窗口管理器
 
-wmParams =WindowManager.LayoutParams() --对象
+    wmParams =WindowManager.LayoutParams() --对象
 
-if tonumber(Build.VERSION.SDK) >= 26 then
-  wmParams.type =WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY--安卓8以上悬浮窗打开方式
- else
-  wmParams.type =WindowManager.LayoutParams.TYPE_SYSTEM_ALERT--安卓8以下的悬浮窗打开方式
-end
+    if tonumber(Build.VERSION.SDK) >= 26 then
+      wmParams.type =WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY--安卓8以上悬浮窗打开方式
+     else
+      wmParams.type =WindowManager.LayoutParams.TYPE_SYSTEM_ALERT--安卓8以下的悬浮窗打开方式
+    end
 
-wmParams.format =PixelFormat.RGBA_8888 --设置背景
-wmParams.flags=WindowManager.LayoutParams().FLAG_NOT_FOCUSABLE--焦点设置
-wmParams.gravity = Gravity.LEFT| Gravity.TOP --重力设置
-wmParams.x = activity.getWidth()/8
-wmParams.y = activity.getHeight()/6
-wmParams.width =WindowManager.LayoutParams.WRAP_CONTENT
-wmParams.height =WindowManager.LayoutParams.WRAP_CONTENT
+    wmParams.format =PixelFormat.RGBA_8888 --设置背景
+    wmParams.flags=WindowManager.LayoutParams().FLAG_NOT_FOCUSABLE--焦点设置
+    wmParams.gravity = Gravity.LEFT| Gravity.TOP --重力设置
+    wmParams.x = activity.getWidth()/8
+    wmParams.y = activity.getHeight()/6
+    wmParams.width =WindowManager.LayoutParams.WRAP_CONTENT
+    wmParams.height =WindowManager.LayoutParams.WRAP_CONTENT
 
-mainWindow=loadlayout(winlay)
-minWindow=loadlayout(minlay)
-
-function showWindow() --显示
-  pcall(function()
-    wmManager.addView(mainWindow,wmParams)
-  end)
-end
-
-function closes(v) --关闭
-  wmManager.removeView(mainWindow)
-  XFC=nil
-end
-
-isMax=true --状态
-
-function changeWindow()
-  if isMax==false then
-    isMax=true
-    wmManager.removeView(minWindow)
-    wmManager.addView(mainWindow,wmParams)
-   else
-    isMax=false
-    wmManager.removeView(mainWindow)
-    wmManager.addView(minWindow,wmParams)
-  end
-end
-
-function Win_minWindow.onClick(v)
-  changeWindow()
-end
-
-function Win_minWindow.OnTouchListener(v,event) --移动
-  if event.getAction()==MotionEvent.ACTION_DOWN then
-    firstX=event.getRawX()
-    firstY=event.getRawY()
-    wmX=wmParams.x
-    wmY=wmParams.y
-   elseif event.getAction()==MotionEvent.ACTION_MOVE then
-    wmParams.x=wmX+(event.getRawX()-firstX)
-    wmParams.y=wmY+(event.getRawY()-firstY)
-    wmManager.updateViewLayout(minWindow,wmParams)
-   elseif event.getAction()==MotionEvent.ACTION_UP then
-    --changeWindow()
-  end
-  return false
-end
-
---移动
-function win_move.OnTouchListener(v,event) --移动
-  if event.getAction()==MotionEvent.ACTION_DOWN then
-    firstX=event.getRawX()
-    firstY=event.getRawY()
-    wmX=wmParams.x
-    wmY=wmParams.y
-   elseif event.getAction()==MotionEvent.ACTION_MOVE then
-    wmParams.x=wmX+(event.getRawX()-firstX)
-    wmParams.y=wmY+(event.getRawY()-firstY)
-    wmManager.updateViewLayout(mainWindow,wmParams)
-   elseif event.getAction()==MotionEvent.ACTION_UP then
-  end
-  return true
-end
+    wmParams.alpha = 0.5;
+    wmParams.screenOrientation = 1;
 
 
----悬浮窗 end
+    mainWindow=loadlayout(winlay)
+    minWindow=loadlayout(minlay)
+
+    function showWindow() --显示
+      pcall(function()
+        wmManager.addView(mainWindow,wmParams)
+      end)
+    end
+
+    function closes(v) --关闭
+      wmManager.removeView(mainWindow)
+      XFC=nil
+    end
+
+    isMax=true --状态
+
+    function changeWindow()
+      if isMax==false then
+        isMax=true
+        wmManager.removeView(minWindow)
+        wmManager.addView(mainWindow,wmParams)
+       else
+        isMax=false
+        wmManager.removeView(mainWindow)
+        wmManager.addView(minWindow,wmParams)
+      end
+    end
+
+    function Win_minWindow.onClick(v)
+      changeWindow()
+    end
+
+    function Win_minWindow.OnTouchListener(v,event) --移动
+      if event.getAction()==MotionEvent.ACTION_DOWN then
+        firstX=event.getRawX()
+        firstY=event.getRawY()
+        wmX=wmParams.x
+        wmY=wmParams.y
+       elseif event.getAction()==MotionEvent.ACTION_MOVE then
+        wmParams.x=wmX+(event.getRawX()-firstX)
+        wmParams.y=wmY+(event.getRawY()-firstY)
+        wmManager.updateViewLayout(minWindow,wmParams)
+       elseif event.getAction()==MotionEvent.ACTION_UP then
+        --changeWindow()
+      end
+      return false
+    end
+
+    --移动
+    function win_move.OnTouchListener(v,event) --移动
+      if event.getAction()==MotionEvent.ACTION_DOWN then
+        firstX=event.getRawX()
+        firstY=event.getRawY()
+        wmX=wmParams.x
+        wmY=wmParams.y
+       elseif event.getAction()==MotionEvent.ACTION_MOVE then
+        wmParams.x=wmX+(event.getRawX()-firstX)
+        wmParams.y=wmY+(event.getRawY()-firstY)
+        wmManager.updateViewLayout(mainWindow,wmParams)
+       elseif event.getAction()==MotionEvent.ACTION_UP then
+      end
+      return true
+    end
+
+
+    ---悬浮窗 end
