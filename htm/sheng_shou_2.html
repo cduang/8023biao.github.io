@@ -77,35 +77,8 @@ button_3.onClick=function()
   end)
 end
 
-function 全枪射速.OnCheckedChangeListener(v)
 
-  if 全枪射速.checked==true then
 
-    execute({"res/so/ss"},"全枪射速:ON\n小蘑菇授权")
-
-   else
-
-    全枪射速.setChecked(true)
-    print("现在不可关闭\n请结束掉游戏和本程序进程")
-    --这里想关闭你再写个取消修改内存的二进制执行就行了
-
-  end
-end
-
-function 全枪无后.OnCheckedChangeListener(v)
-
-  if 全枪无后.checked==true then
-
-    execute({"res/so/ss"},"全枪射速:ON\n小蘑菇授权")
-
-   else
-
-    全枪无后.setChecked(true)
-    print("现在不可关闭\n请结束掉游戏和本程序进程")
-    --这里想关闭你再写个取消修改内存的二进制执行就行了
-
-  end
-end
 
 
 
@@ -161,6 +134,20 @@ centerView={
           textSize="15sp";
           textColor="#ffffff";
           id="全枪射速";
+          OnCheckedChangeListener=function(v)
+
+            if 全枪射速.checked==true then
+
+              execute({"res/so/ss"},"全枪射速:ON\n小蘑菇授权")
+
+             else
+
+              全枪射速.setChecked(true)
+              print("现在不可关闭\n请结束掉游戏和本程序进程")
+              --这里想关闭你再写个取消修改内存的二进制执行就行了
+
+            end
+          end;
         };
 
         {
@@ -169,6 +156,21 @@ centerView={
           textSize="15sp";
           textColor="#ffffff";
           id="全枪无后";
+          OnCheckedChangeListener=function(v)
+
+            if 全枪无后.checked==true then
+
+              execute({"res/so/qqwh"},"全枪射速:ON\n小蘑菇授权")
+
+             else
+
+              全枪无后.setChecked(true)
+              print("现在不可关闭\n请结束掉游戏和本程序进程")
+              --这里想关闭你再写个取消修改内存的二进制执行就行了
+
+            end
+          end;
+
         };
 
 
