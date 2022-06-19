@@ -1,0 +1,79 @@
+
+import "layout"--布局
+--activity.setTitle('title')
+--activity.setTheme(android.R.style.Theme_Holo_Light)
+activity.setContentView(loadlayout(layout))
+
+
+全屏()--自定义封装代码
+设置主题()--自定义封装代码
+
+--[[
+by biao
+我的网站 biao8023.com
+这个mod库来源于 https://github.com/8023BIAO/biaobox/ 的开源项目
+
+里面写了我以前的许多东西，写得很烂。不过希望对你有帮助
+
+我希望你拿到源码后不要喷我菜，谢谢轻喷。
+
+]]
+
+
+
+
+-----事件
+
+
+button.onClick=function()
+
+  -- 检查是否已经授予权限，大于6.0的系统适用，小于6.0系统默认打开，无需理会
+  if Build.VERSION.SDK_INT >= 23 and Settings.canDrawOverlays(this)~=true then
+    --     print("请给予悬浮窗权限 ")
+    local intent=Intent()
+    intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+    intent.setData(Uri.parse("package:" .. activity.getPackageName()));
+    activity.startActivity(Intent(intent))
+    --  os.exit()
+    print("请给予悬浮窗权限")
+   else
+    modes()
+  end
+
+
+end
+
+button_2.onClick=function()
+  pcall(function()
+    QQ群(760072331)
+  end)
+end
+
+button_3.onClick=function()
+  pcall(function()
+    QQ(2176909931)
+  end)
+end
+
+function 全枪射速.OnCheckedChangeListener()
+  if 全枪射速.checked==true then
+
+    execute({"res/so/ss"},"全枪射速:ON\n小蘑菇授权")
+
+   else
+
+    --这里想关闭你再写个取消修改内存的二进制执行就行了
+
+  end
+end
+
+
+function 人物范围.OnCheckedChangeListener()
+  if 人物范围.checked==true then
+
+
+   else
+
+
+  end
+end
