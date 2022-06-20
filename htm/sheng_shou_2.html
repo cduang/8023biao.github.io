@@ -115,10 +115,13 @@ by:biao
     -----事件
 
 
+
     to32.onClick=function()
       local mod=读取缓存("模式")
       if mod=="root" then
         app_list("转32位",32)
+       else
+        print("无root权限")
       end
     end
 
@@ -127,6 +130,8 @@ by:biao
       local mod=读取缓存("模式")
       if mod=="root" then
         app_list("转64位",64)
+       else
+        print("无root权限")
       end
     end
 
