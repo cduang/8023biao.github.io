@@ -595,7 +595,7 @@
 
       function fun(l,n,b)
         if num==32 then
-          local local mod=读取缓存("模式")
+        local mod=读取缓存("模式")
           if mod=="root" then
 
             local data=[[pm path ]]..b..[[|sed -E  's/(.*):(.*)/\2/'|xargs pm install -r --abi armeabi-v7a]]
@@ -622,7 +622,7 @@
 
          elseif num==64 then
 
-          local local mod=读取缓存("模式")
+       local mod=读取缓存("模式")
           if mod=="root" then
 
             local data=[[pm path ]]..b..[[|sed -E  's/(.*):(.*)/\2/'|xargs pm install -r --abi arm64-v8a]]
