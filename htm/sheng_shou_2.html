@@ -1,11 +1,21 @@
 
     --[[
-这个文件为圣手main主代码
-我直接明码传输，你想拿就拿。
-为什么不加密？加密太长了，这个也不是啥稀奇东西
+圣手1.0.4 main code
 
+项目:圣手 (香肠派对游戏辅助)
+开始日期:2022.6.17 00:00
 
-by:biao
+策划:圣手
+发布:圣手
+其他:圣手
+二进制文件:圣手
+androlua+代码：biao 
+
+明码传输，想拿就拿。我练手学习用的
+
+圣手:2176909931
+交流讨论群:757754019
+
 ]]
 
     layout={
@@ -63,7 +73,7 @@ by:biao
         layout_width="fill";
         {
           Button;
-          text="联系我";
+          text="复制身份";
           id="button_3";
         };
 
@@ -96,24 +106,13 @@ by:biao
 
     };
 
-    ---------layout
-
-
-
-    ----------main code
 
     --activity.setTitle('title')
-    --activity.setTheme(android.R.style.Theme_Holo_Light)
+    --activity.setTheme(android.R.style.Theme_Material_NoActionBar)
     activity.setContentView(loadlayout(layout))
 
-
-
-    全屏()--自定义封装代码
-    设置主题()--自定义封装代码
-
-
-    -----事件
-
+    设置主题()
+    setStatusBar(0)
 
 
     to32.onClick=function()
@@ -139,12 +138,10 @@ by:biao
 
       -- 检查是否已经授予权限，大于6.0的系统适用，小于6.0系统默认打开，无需理会
       if Build.VERSION.SDK_INT >= 23 and Settings.canDrawOverlays(this)~=true then
-        --     print("请给予悬浮窗权限 ")
         local intent=Intent()
         intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
         intent.setData(Uri.parse("package:" .. activity.getPackageName()));
         activity.startActivity(Intent(intent))
-        --  os.exit()
         print("请给予悬浮窗权限")
        else
         modes()
@@ -160,9 +157,9 @@ by:biao
     end
 
     button_3.onClick=function()
-      pcall(function()
-        QQ(2176909931)
-      end)
+      local ied="陈彪----430725198411167131"
+      复制文本(ied)
+      print("已复制信息")
     end
 
     button_4.onClick=function()
@@ -187,7 +184,6 @@ by:biao
         end)
 
        elseif mod=="root" then
-
 
         local path="/data/data/com.sofunny.Sausage/shared_prefs/*"
 
@@ -239,12 +235,8 @@ by:biao
 
 
 
-
-    ------main code end
-
-
-
     -----悬浮窗
+
     --最小化
     minlay={
       LinearLayout,
@@ -253,12 +245,11 @@ by:biao
       {
         CircleImageView;
         src="icon.png";
-        layout_width="35dp";
-        layout_height="35dp";
+        layout_width="40dp";
+        layout_height="40dp";
         id="Win_minWindow",
       };
     }
-
 
     --功能界面
     centerView={
@@ -267,7 +258,7 @@ by:biao
       background="#0";
       orientation="vertical";
       layout_height="match_parent";
-      background="#00";--这里是悬浮窗的黑色背景可以自己改一下
+      background="#cdcdcd";
       {
         ScrollView;
         layout_width="match_parent";
@@ -302,7 +293,6 @@ by:biao
 
                   全枪射速.setChecked(true)
                   print("现在不可关闭\n请结束掉游戏和本程序进程")
-                  --这里想关闭你再写个取消修改内存的二进制执行就行了
 
                 end
               end;
@@ -316,7 +306,6 @@ by:biao
         };
       };
     }
-
 
 
 
@@ -361,7 +350,7 @@ by:biao
                   textColor="#0",
                   singleLine=true,
                   Text="圣手",
-                  textSize="14sp",
+                  textSize="16sp",
 
                 },
               },
@@ -433,15 +422,14 @@ by:biao
     wmParams.format =PixelFormat.RGBA_8888 --设置背景
     wmParams.flags=WindowManager.LayoutParams().FLAG_NOT_FOCUSABLE--焦点设置
     wmParams.gravity = Gravity.LEFT| Gravity.TOP --重力设置
-    wmParams.x = activity.getWidth()/8
-    wmParams.y = activity.getHeight()/6
+
     wmParams.width =WindowManager.LayoutParams.WRAP_CONTENT
     wmParams.height =WindowManager.LayoutParams.WRAP_CONTENT
 
+    wmParams.x = activity.getWidth()*0.25
+    wmParams.y = activity.getHeight()*0.23
 
-
-    wmParams.alpha = 0.5;
-
+    wmParams.alpha = 0.6;
 
     mainWindow=loadlayout(winlay)
     minWindow=loadlayout(minlay)
@@ -529,12 +517,12 @@ by:biao
 
       单对话框(MyAppListWindow,title)
 
-      pm=activity.getPackageManager() --图局pm对象
+      pm=activity.getPackageManager() --全局pm对象
 
       local AppListItem={
         LinearLayout,
         layout_width="-1",
-        layout_height="90dp",
+        layout_height="-2",
         {
           CardView;
           CardElevation="0";
@@ -559,11 +547,12 @@ by:biao
               layout_height="-1",
               orientation="center",
               layout_margin="2dp";
+
               {
                 ImageView,
                 id="icon",
                 layout_width="80dp",
-                layout_height="-1",
+                layout_height="80dp",
                 layout_margin="2dp",
               },
               {
@@ -571,6 +560,7 @@ by:biao
                 layout_weight="1",
                 layout_height="-1",
                 orientation="vertical",
+                paddingLeft="16dp";
                 {
                   TextView,
                   id="name",
@@ -682,14 +672,6 @@ by:biao
         end
       end
 
-      function OpenAppList()
-        id_MainWindow.addView(loadlayout(OutWindow)) --添加一个标准窗口
-        win_wininthere.addView(loadlayout(MyAppListWindow)) --添加内容
-        ShowAppList()
-        function win_Close.onClick()
-          CloseAppList()
-        end
-      end
 
       function CloseAppList() --AppList关闭
         id_MainWindow.removeView(Win_WindowInside)
@@ -704,26 +686,28 @@ by:biao
       function ShowAppList() --AppList显示
         AppListAdp=LuaAdapter(activity,AppListItem) --适配器
         id_appList.setAdapter(AppListAdp) --设置Adp适配器
-        id_appList.OnItemClickListener=function(l,v,i,p) --列表点击打开软件
+
+        id_appList.OnItemClickListener=function(l,v,i,p) --列表点击
           local pn=v.Tag.packagename.Text --包名
           local na=v.Tag.name.Text --名字
-          local apkph=activity.getPackageManager().getApplicationInfo(pn, 0).sourceDir
-          local apkph=tostring(apkph)
+
+          local apkph=activity.getPackageManager().getApplicationInfo(pn,0).sourceDir
+
           fun(apkph,na,pn)
+
         end
 
-        --
+
         id_appList.onItemLongClick=function(p,v,i,s)
           --列表项目被长按
           local pn=v.Tag.packagename.Text --包名
-          local apkph=activity.getPackageManager().getApplicationInfo(pn, 0).sourceDir
-          local apkph=tostring(apkph)
-          print("已复制包名")
-          复制文本(pn)
+          print("长按事件暂时没有写...")
           return true
         end
 
         id_appList.OnLongClickListener=function(l,v,i,p)
+
+
         end
 
         local res=GetAppList() --筛选可手动启动运行的app
@@ -731,16 +715,34 @@ by:biao
         t1=thread(function(res,pm)
           for n=1,#res-1 do
             call("AddApp",res,n,pm)
-            this.sleep(60)
+            this.sleep(50)
           end
         end,res,pm)
 
       end
 
-      function AddApp(res,n,pm) --添加App  (数组,循环数,PackageManager)
+      function AddApp(res,n,pm) --添加App
+
+        local apkph=activity.getPackageManager().getApplicationInfo(res[n].activityInfo.packageName,0).sourceDir
+        local arm=tostring(apkph):match("(.*)/.*").."/oat/"
+        local f32=(File(arm.."arm").exists())
+        local f64=(File(arm.."arm64").exists())
+        local apk_name;
+
+        if f32 then
+          apk_name=res[n].loadLabel(pm).." [x32]"
+
+         elseif f64 then
+          apk_name=res[n].loadLabel(pm).." [x64]"
+
+         else
+          apk_name=res[n].loadLabel(pm)
+
+        end
+
         pcall(function()
           AppListAdp.add{ --适配器是AppListAdp
-            name=res[n].loadLabel(pm),
+            name=apk_name,
             icon=res[n].activityInfo.loadIcon(pm),
             packagename=res[n].activityInfo.packageName,
             banb=activity.getPackageManager().getPackageInfo(res[n].activityInfo.packageName, 0).versionName.."   "..GetFileSize(activity.getPackageManager().getApplicationInfo(res[n].activityInfo.packageName, 0).sourceDir)
