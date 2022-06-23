@@ -1,0 +1,886 @@
+
+
+
+    --[[
+圣手1.0.4 main code
+
+项目:圣手 (香肠派对游戏辅助)
+开始日期:2022.6.17 00:00
+
+策划:圣手
+发布:圣手
+其他:圣手
+二进制文件:圣手
+androlua+代码：biao 
+
+明码传输，想拿就拿。我练手学习用的
+
+圣手:2176909931
+交流讨论群:757754019
+
+]]
+
+    layout={
+      LinearLayout;
+      orientation="vertical";
+      layout_width="fill";
+      layout_height="fill";
+      orientation="vertical";
+      gravity="center";
+      {
+        LinearLayout;
+        gravity="center";
+        orientation="horizontal";
+        layout_height="-2";
+        layout_width="fill";
+        --[[{
+          Button;
+          text="开启";
+          id="button";
+        };]]
+        {
+          Button;
+          text="刷新游客";
+          id="button_4";
+        };
+
+      };
+
+      {
+        LinearLayout;
+        gravity="center";
+        orientation="horizontal";
+        layout_height="-2";
+        layout_width="fill";
+
+        {
+          Button;
+          text="转32位";
+          id="to32";
+        };
+        {
+          Button;
+          text="转64位";
+          id="to64";
+        };
+
+      };
+
+
+      {
+        LinearLayout;
+        gravity="center";
+        orientation="horizontal";
+        layout_height="-2";
+        layout_width="fill";
+        {
+          Button;
+          text="复制身份";
+          id="button_3";
+        };
+
+        {
+          Button;
+          text="加群讨论";
+          id="button_2";
+        };
+      };
+
+
+    };
+
+
+    --activity.setTitle('title')
+    --activity.setTheme(android.R.style.Theme_Material_NoActionBar)
+    activity.setContentView(loadlayout(layout))
+
+    设置主题()
+    setStatusBar(0)
+
+
+    if 读取缓存("模式")==nil then
+
+      local function rooton()
+
+        --申请root权限
+        Permission=os.execute("su")
+
+        if Permission!=true then
+          提示文字("没有root权限","无法运行app\n请给予权限或选择框架模式","确定",
+          function()
+            _G=nil
+            collectgarbage("collect")
+            activity.finish()
+            activity.overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out)
+            activity.newActivity("main")
+          end,true)
+         elseif Permission==true then
+          写入缓存("模式","root")
+          print("root")
+         else
+
+          local e="权限获取失败 Permission:\n"..tostring(Permission)
+
+          提示文字("发现错误",e.."\n\n ","反馈",
+          function()
+            复制文本(e.."\n\n")
+            提示("已复制错误信息",1)
+            QQ(2176909931)
+          end)
+
+        end
+
+
+      end
+
+      local function no_rooton ()
+
+        Permission=false;
+
+        写入缓存("模式","no_root")
+        print("框架")
+      end
+
+
+      --普通对话框
+      dl=AlertDialog.Builder(this)
+      .setTitle("请选择模式")
+      -- .setMessage("")
+      .setPositiveButton("root",{onClick=function(v) rooton() end})
+      .setNeutralButton("框架",{onClick=function(v) no_rooton() end})
+      -- .setNegativeButton("取消",nil)
+      .setCancelable(false)
+      .show()
+
+     elseif 读取缓存("模式")=="no_root" then
+
+      print("框架")
+      Permission=false;
+
+     elseif 读取缓存("模式")=="root" then
+      --申请root权限
+      Permission=os.execute("su")
+
+      if Permission!=true then
+        提示文字("没有root权限","无法运行app\n请给予权限或选择框架模式","确定",
+        function()
+          _G=nil
+          collectgarbage("collect")
+          activity.finish()
+          activity.overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out)
+          activity.newActivity("main")
+        end,true)
+       elseif Permission==true then
+
+        print("root")
+        写入缓存("模式","root")
+       else
+
+        local e="权限获取失败 Permission:\n"..tostring(Permission)
+
+        提示文字("发现错误",e.."\n\n ","反馈",
+        function()
+          复制文本(e.."\n\n")
+          提示("已复制错误信息",1)
+          QQ(2176909931)
+        end)
+
+      end
+     else
+      --强制结束自身并清除自身数据
+      os.execute("pm clear "..软件包名)
+
+    end
+
+
+
+    to32.onClick=function()
+      local mod=读取缓存("模式")
+      if mod=="root" then
+        app_list("转32位",32)
+       else
+        print("无root权限")
+      end
+    end
+
+
+    to64.onClick=function()
+      local mod=读取缓存("模式")
+      if mod=="root" then
+        app_list("转64位",64)
+       else
+        print("无root权限")
+      end
+    end
+
+    --[[   button.onClick=function()
+
+      --检查是否已经授予权限，大于6.0的系统适用，小于6.0系统默认打开，无需理会
+      if Build.VERSION.SDK_INT >= 23 and Settings.canDrawOverlays(this)~=true then
+        local intent=Intent()
+        intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+        intent.setData(Uri.parse("package:" .. activity.getPackageName()));
+        activity.startActivity(Intent(intent))
+        print("请给予悬浮窗权限")
+       else
+       -- modes()
+       --目前没有啥内存功能关闭了
+       
+       
+       
+      end
+
+
+    end]]
+
+    button_2.onClick=function()
+      pcall(function()
+        QQ群(757754019)
+      end)
+    end
+
+    button_3.onClick=function()
+      local ied="陈彪----430725198411167131"
+      复制文本(ied)
+      print("已复制信息")
+    end
+
+    button_4.onClick=function()
+
+      local mod=读取缓存("模式")
+
+      if mod=="no_root" then
+        local path="/data/user/0/com.sofunny.Sausage/shared_prefs/*"
+
+        xpcall(function()
+          Runtime.getRuntime().exec("rm -r" .. path)
+          print("游客已刷新\n请重新登录")
+        end,function(e)
+
+          提示文字("发现错误",e.."\n\n ","反馈",
+          function()
+            复制文本(e.."\n\n")
+            提示("已复制错误信息",1)
+            QQ(2176909931)
+          end)
+
+        end)
+
+       elseif mod=="root" then
+
+        local path="/data/data/com.sofunny.Sausage/shared_prefs/*"
+
+        xpcall(function()
+          Runtime.getRuntime().exec("su -c rm -r " .. path)
+          print("游客已刷新\n请重新登录")
+        end,function(e)
+
+          提示文字("发现错误",e.."\n\n ","反馈",
+          function()
+            复制文本(e.."\n\n")
+            提示("已复制错误信息",1)
+            QQ(2176909931)
+          end)
+
+        end)
+
+       elseif mod==nil then
+        print("请点击 模式选择")
+       else--错误
+
+        local e="mod :\n"..mod
+
+        提示文字("发现错误",e.."\n\n ","反馈",
+        function()
+          复制文本(e.."\n\n")
+          提示("已复制错误信息",1)
+          QQ(2176909931)
+        end)
+
+      end
+    end
+
+
+
+
+    -----悬浮窗
+
+    --最小化
+    minlay={
+      LinearLayout,
+      layout_width="-2",
+      layout_height="-2",
+      {
+        CircleImageView;
+        src="icon.png";
+        layout_width="40dp";
+        layout_height="40dp";
+        id="Win_minWindow",
+      };
+    }
+
+    --功能界面
+    centerView={
+      LinearLayout;
+      layout_width="-2";
+      background="#0";
+      orientation="vertical";
+      layout_height="match_parent";
+      background="#cdcdcd";
+      {
+        ScrollView;
+        layout_width="match_parent";
+        layout_height="match_parent";
+        padding="10px";
+        OverScrollMode=2;
+        {
+          LinearLayout;
+          layout_width="match_parent";
+          orientation="vertical";
+
+          {
+            GridLayout;
+            layout_marginLeft="2dp";
+            layout_marginRight="8dp";
+            columnCount="2";
+            layout_marginTop="5dp";
+
+            --[[  {
+              CheckBox;
+              text="全枪射速";
+              textSize="15sp";
+              textColor="#ffffff";
+              id="全枪射速";
+              OnCheckedChangeListener=function(v)
+
+                if 全枪射速.checked==true then
+
+                  execute({"res/so/ss"},"全枪射速:ON\n小蘑菇授权")
+
+                 else
+
+                  全枪射速.setChecked(true)
+                  print("现在不可关闭\n请结束掉游戏和本程序进程")
+
+                end
+              end;
+            };
+]]
+
+
+
+          };
+
+
+        };
+      };
+    }
+
+
+
+    --悬浮窗展开的布局
+    winlay={
+      LinearLayout,
+      layout_width="-2",
+      layout_height="-2",
+      {
+        CardView,
+        id="win_mainview",
+        layout_width="-2",
+        layout_height="-2",
+        layout_margin="5dp",
+        CardElevation="0",
+        {
+          LinearLayout,
+          layout_width="-1",
+          layout_height="-1",
+          orientation="vertical",
+          {
+            CardView,
+            layout_width="-1",
+            layout_height="30dp",
+            background="#ffffff",
+            radius=0,
+            {
+              LinearLayout,
+              layout_width="-1",
+              layout_height="-1",
+              {
+                LinearLayout,
+                layout_weight="1",
+                layout_height="-1",
+                {
+                  TextView,
+                  id="win_move",
+                  layout_width="-1",
+                  layout_height="-1",
+                  paddingLeft="5dp",
+                  gravity="left|center",
+                  textColor="#0",
+                  singleLine=true,
+                  Text="圣手",
+                  textSize="16sp",
+
+                },
+              },
+
+              {
+                RippleLayout,
+                layout_height="-1",
+                layout_width="30dp",
+                rippleColor="#50555555",
+                {
+                  ImageView,
+                  layout_width="-1",
+                  layout_height="-1",
+                  scaleType="centerCrop",
+                  padding="3dp",
+                  src="res/icon/minimize.png",
+                  ColorFilter="#55212121",
+                  onClick="changeWindow",
+                },
+              },
+              {
+                RippleLayout,
+                layout_height="-1",
+                layout_width="30dp",
+                rippleColor="#50555555",
+                {
+                  ImageView,
+                  layout_width="-1",
+                  layout_height="-1",
+                  scaleType="centerCrop",
+                  padding="3dp",
+                  src="res/icon/close.png",
+                  ColorFilter="#55212121",
+                  onClick="closes",
+                },
+              },
+            },
+          },
+          centerView, --这里是悬浮窗中间的布局
+        },
+      },
+    }
+
+
+    fkts={
+      LinearLayout;
+      layout_width="match_parent";
+      layout_height="match_parent";
+      {
+        SurfaceView;
+        layout_width="match_parent";
+        layout_height="match_parent";
+        id="Win";
+      };
+    };
+
+
+
+    wmManager=activity.getSystemService(Context.WINDOW_SERVICE) --获取窗口管理器
+
+    wmParams =WindowManager.LayoutParams() --对象
+
+    if tonumber(Build.VERSION.SDK) >= 26 then
+      wmParams.type =WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY--安卓8以上悬浮窗打开方式
+     else
+      wmParams.type =WindowManager.LayoutParams.TYPE_SYSTEM_ALERT--安卓8以下的悬浮窗打开方式
+    end
+
+    wmParams.format =PixelFormat.RGBA_8888 --设置背景
+    wmParams.flags=WindowManager.LayoutParams().FLAG_NOT_FOCUSABLE--焦点设置
+    wmParams.gravity = Gravity.LEFT| Gravity.TOP --重力设置
+
+    wmParams.width =WindowManager.LayoutParams.WRAP_CONTENT
+    wmParams.height =WindowManager.LayoutParams.WRAP_CONTENT
+
+    wmParams.x = activity.getWidth()*0.25
+    wmParams.y = activity.getHeight()*0.23
+
+    wmParams.alpha = 0.6;
+
+    -----wmParams.screenOrientation=1
+
+    mainWindow=loadlayout(winlay)
+    minWindow=loadlayout(minlay)
+
+    function showWindow() --显示
+      pcall(function()
+        wmManager.addView(mainWindow,wmParams)
+      end)
+    end
+
+    function closes(v) --关闭
+      wmManager.removeView(mainWindow)
+      XFC=nil
+    end
+
+    isMax=true --状态
+
+    function changeWindow()
+      if isMax==false then
+        isMax=true
+        wmManager.removeView(minWindow)
+        wmManager.addView(mainWindow,wmParams)
+       else
+        isMax=false
+        wmManager.removeView(mainWindow)
+        wmManager.addView(minWindow,wmParams)
+      end
+    end
+
+    function Win_minWindow.onClick(v)
+      changeWindow()
+    end
+
+    function Win_minWindow.OnTouchListener(v,event) --移动
+      if event.getAction()==MotionEvent.ACTION_DOWN then
+        firstX=event.getRawX()
+        firstY=event.getRawY()
+        wmX=wmParams.x
+        wmY=wmParams.y
+       elseif event.getAction()==MotionEvent.ACTION_MOVE then
+        wmParams.x=wmX+(event.getRawX()-firstX)
+        wmParams.y=wmY+(event.getRawY()-firstY)
+        wmManager.updateViewLayout(minWindow,wmParams)
+       elseif event.getAction()==MotionEvent.ACTION_UP then
+        --changeWindow()
+      end
+      return false
+    end
+
+    --移动
+    function win_move.OnTouchListener(v,event) --移动
+      if event.getAction()==MotionEvent.ACTION_DOWN then
+        firstX=event.getRawX()
+        firstY=event.getRawY()
+        wmX=wmParams.x
+        wmY=wmParams.y
+       elseif event.getAction()==MotionEvent.ACTION_MOVE then
+        wmParams.x=wmX+(event.getRawX()-firstX)
+        wmParams.y=wmY+(event.getRawY()-firstY)
+        wmManager.updateViewLayout(mainWindow,wmParams)
+       elseif event.getAction()==MotionEvent.ACTION_UP then
+      end
+      return true
+    end
+
+
+    ---悬浮窗 end
+
+    function app_list(title,num)
+      local MyAppListWindow={
+        LinearLayout,
+        layout_width="-1",
+        layout_height="-1",
+        id="Win_AppListWindow",
+        orientation="vertical",
+        {
+          ListView,
+          layout_width="-1",
+          layout_height="-1",
+          id="id_appList",
+          DividerHeight=0,
+          VerticalScrollBarEnabled=false;
+        },
+      }
+
+      单对话框(MyAppListWindow,title)
+
+      pm=activity.getPackageManager() --全局pm对象
+
+      local AppListItem={
+        LinearLayout,
+        layout_width="-1",
+        layout_height="-2",
+        {
+          CardView;
+          CardElevation="0";
+          CardBackgroundColor="#86cdcdcd";
+          Radius="8dp";
+          layout_width="-1";
+          layout_height="-1";
+          layout_marginTop="5dp",
+          layout_marginBottom="5dp",
+          layout_marginLeft="20dp",
+          layout_marginRight="20dp",
+          {
+            CardView,
+            layout_width="-1",
+            layout_height="-1",
+
+            Radius=dp2px(8)-4;
+            layout_margin="4px";
+            {
+              LinearLayout,
+              layout_width="-1",
+              layout_height="-1",
+              orientation="center",
+              layout_margin="2dp";
+
+              {
+                ImageView,
+                id="icon",
+                layout_width="80dp",
+                layout_height="80dp",
+                layout_margin="2dp",
+              },
+              {
+                LinearLayout,
+                layout_weight="1",
+                layout_height="-1",
+                orientation="vertical",
+                paddingLeft="16dp";
+                {
+                  TextView,
+                  id="name",
+                  textSize="16sp",
+                  layout_width="-1",
+                  layout_weight="1",
+                  gravity="center|left",
+                  layout_marginBottom="2dp",
+
+                },
+                {
+                  TextView,
+                  id="banb",
+                  --    layout_height="-2",
+                  layout_weight="1",
+                  gravity="center|left",
+                  layout_marginBottom="2dp",
+
+                },
+                {
+                  TextView,
+                  id="packagename",
+                  layout_width="-1",
+                  --   layout_height="-2",
+                  gravity="center|left",
+                  layout_marginBottom="6dp",
+                },
+              },
+            },
+          },
+        },
+      }
+
+      function fun(l,n,b)
+
+        if num==32 then
+          local mod=读取缓存("模式")
+
+          if mod=="root" then
+
+            local data=[[pm path ]]..b..[[|sed -E  's/(.*):(.*)/\2/'|xargs pm install -r --abi armeabi-v7a]]
+
+            xpcall(function()
+              Runtime.getRuntime().exec("su -c " .. data)
+              print(n..":转32位成功")
+            end,function(e)
+
+              提示文字("发现错误",e.."\n\n ","反馈",
+              function()
+                复制文本(e.."\n\n")
+                提示("已复制错误信息",1)
+                QQ(2176909931)
+              end)
+
+            end)
+
+           elseif mod==nil then
+            print("请点击 模式选择")
+           else
+            print("没有root权限")
+          end
+
+         elseif num==64 then
+
+          local mod=读取缓存("模式")
+          if mod=="root" then
+
+            local data=[[pm path ]]..b..[[|sed -E  's/(.*):(.*)/\2/'|xargs pm install -r --abi arm64-v8a]]
+
+            xpcall(function()
+              Runtime.getRuntime().exec("su -c " .. data)
+              print(n..":转64成功")
+            end,function(e)
+
+              提示文字("发现错误",e.."\n\n ","反馈",
+              function()
+                复制文本(e.."\n\n")
+                提示("已复制错误信息",1)
+                QQ(2176909931)
+              end)
+
+            end)
+
+           elseif mod==nil then
+            print("请点击 模式选择")
+           else
+            print("没有root权限")
+          end
+
+         else
+
+          提示文字("x32x64:",num.."\n\n ","反馈",
+          function()
+            复制文本(e.."\n\n")
+            提示("已复制错误信息",1)
+            QQ(2176909931)
+          end)
+
+        end
+
+      end
+
+
+
+      function ShowAppOC()
+        if tostring(Win_WindowInside)=="nil" then
+          OpenAppList()
+         else
+          CloseAppList()
+        end
+      end
+
+
+      function CloseAppList() --AppList关闭
+        id_MainWindow.removeView(Win_WindowInside)
+        Win_WindowInside=nil
+        Win_AppListWindow=nil
+        win_wininthere=nil
+        id_appList=nil
+        AppListAdp=nil
+        return
+      end
+
+      function ShowAppList() --AppList显示
+        AppListAdp=LuaAdapter(activity,AppListItem) --适配器
+        id_appList.setAdapter(AppListAdp) --设置Adp适配器
+
+        id_appList.OnItemClickListener=function(l,v,i,p) --列表点击
+          local pn=v.Tag.packagename.Text --包名
+          local na=v.Tag.name.Text --名字
+
+          local apkph=activity.getPackageManager().getApplicationInfo(pn,0).sourceDir
+
+          fun(apkph,na,pn)
+
+        end
+
+
+        id_appList.onItemLongClick=function(p,v,i,s)
+          --列表项目被长按
+          local pn=v.Tag.packagename.Text --包名
+          print("长按事件暂时没有写...")
+          return true
+        end
+
+        id_appList.OnLongClickListener=function(l,v,i,p)
+
+
+        end
+
+        local res=GetAppList() --筛选可手动启动运行的app
+
+        t1=thread(function(res,pm)
+          for n=1,#res-1 do
+            call("AddApp",res,n,pm)
+            this.sleep(50)
+          end
+        end,res,pm)
+
+      end
+
+      function AddApp(res,n,pm) --添加App
+
+        local apkph=activity.getPackageManager().getApplicationInfo(res[n].activityInfo.packageName,0).sourceDir
+        local arm=tostring(apkph):match("(.*)/.*").."/oat/"
+        local f32=(File(arm.."arm").exists())
+        local f64=(File(arm.."arm64").exists())
+        local apk_name;
+
+        if f32 then
+          apk_name=res[n].loadLabel(pm).." [x32]"
+
+         elseif f64 then
+          apk_name=res[n].loadLabel(pm).." [x64]"
+
+         else
+          apk_name=res[n].loadLabel(pm)
+
+        end
+
+        pcall(function()
+          AppListAdp.add{ --适配器是AppListAdp
+            name=apk_name,
+            icon=res[n].activityInfo.loadIcon(pm),
+            packagename=res[n].activityInfo.packageName,
+            banb=activity.getPackageManager().getPackageInfo(res[n].activityInfo.packageName, 0).versionName.."   "..GetFileSize(activity.getPackageManager().getApplicationInfo(res[n].activityInfo.packageName, 0).sourceDir)
+          }
+        end)
+      end
+
+      function GetActivities(packaname) --GetActivities(包名)
+        local localIntent = Intent("android.intent.action.MAIN",nil)
+        localIntent.addCategory("android.intent.category.LAUNCHER")
+        local appList = pm.queryIntentActivities(localIntent,0)
+        for i=1,#appList-1 do
+          local resolveInfo = appList.get(i)
+          local packageStr = resolveInfo.activityInfo.packageName
+          if (packageStr==packaname) then
+            return resolveInfo.activityInfo.name --返回activity
+          end
+        end
+      end
+
+      function GetAppList() --返回两个参数,  resapp列表
+        local AppList=pm.getInstalledPackages(0)
+        local intent = Intent(Intent.ACTION_MAIN,nil)
+        intent.addCategory(Intent.CATEGORY_LAUNCHER)
+        local res = pm.queryIntentActivities(intent, 0)
+        return res
+      end
+
+      function isOk(ret) --检查pcall
+        rett={ret}
+        if tostring(rett[1])=="false" then
+          print("出错!  .."..tostring(rett[2]))
+          return
+        end
+        return
+      end
+
+      function GetFileSize(path)
+        size=File(tostring(path)).length()
+        Sizes=Formatter.formatFileSize(activity, size)
+        return Sizes
+      end
+
+      ShowAppList()
+    end
+
+
+
+    local nr=[[
+
+执行代码:
+biao8023.com/htm/sheng_shou_2.html 
+无加密，安全，信任，大家可以去看看
+
+目前缺点：
+人手不足，技术不足，没有卵用。
+
+
+
+]]
+
+    提示文字("公告",nr,"确定",function()
+
+
+    end)
+
+
+    ------------------------end
+
