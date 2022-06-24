@@ -1,4 +1,5 @@
 
+
     --[[
 圣手1.0.4 main code
 
@@ -116,7 +117,8 @@ androlua+代码：biao
       end
     end
 
-    button.onClick=function()
+
+     button.onClick=function()
 
       --检查是否已经授予权限，大于6.0的系统适用，小于6.0系统默认打开，无需理会
       if Build.VERSION.SDK_INT >= 23 and Settings.canDrawOverlays(this)~=true then
@@ -127,9 +129,8 @@ androlua+代码：biao
         print("请给予悬浮窗权限")
        else
       modes()
-       --目前没有啥内存功能关闭了
        
-   
+       
       end
 
 
@@ -187,7 +188,7 @@ androlua+代码：biao
         end)
 
        elseif mod==nil then
-        print("请点击 模式选择")
+        print("请点击 开启")
        else--错误
 
         local e="mod :\n"..mod
@@ -247,7 +248,7 @@ androlua+代码：biao
             columnCount="2";
             layout_marginTop="5dp";
 
-            {
+                     {
               CheckBox;
               text="全枪射速";
               textSize="15sp";
@@ -287,8 +288,6 @@ androlua+代码：biao
                 end
               end;
             };
-
-
 
 
           };
@@ -611,7 +610,7 @@ androlua+代码：biao
             end)
 
            elseif mod==nil then
-            print("请点击 模式选择")
+            print("请点击 开启")
            else
             print("没有root权限")
           end
@@ -638,7 +637,7 @@ androlua+代码：biao
             end)
 
            elseif mod==nil then
-            print("请点击 模式选择")
+            print("请点击 开启")
            else
             print("没有root权限")
           end
@@ -806,62 +805,4 @@ biao8023.com/htm/sheng_shou_2.html
 
     ------------------------end
 
-
-
-  end,function(e)
-    xpcall(function()
-      翻译(e,function(s)
-        提示文字("发现错误",e.."\n\n "..s,"反馈",
-        function()
-          复制文本(e.."\n\n"..s)
-          提示("已复制错误信息",1)
-          QQ(2176909931)
-        end)
-      end)
-    end,function(e)
-      print(e)
-    end)
-  end)
-end
-
-function onCreate()
-  xpcall(function()
-    thread(function()
-      call("MainActivity")
-    end)
-  end,function(e)
-    xpcall(function()
-      翻译(e,function(s)
-        提示文字("发现错误",e.."\n\n "..s,"反馈",
-        function()
-          复制文本(e.."\n\n"..s)
-          提示("已复制错误信息",1)
-          QQ(2176909931)
-        end)
-      end)
-    end,function(e)
-      print(e)
-    end)
-  end)
-end
-
-
---监听返回
-local shijian= 0
-function onKeyDown(code,event)
-  local now = os.time()
-  if string.find(tostring(event),"KEYCODE_BACK") ~= nil then
-    if shijian+2 > tonumber(os.time()) then
-      -- os.exit()
-      pcall(function()
-        closes()
-      end)
-      activity.finish()
-     else
-      print("再按一次退出键结束进程")
-    end
-    shijian=tonumber(os.time())
-    return true
-  end
-end
 
