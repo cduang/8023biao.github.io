@@ -1,3 +1,11 @@
+require "import"
+
+function MainActivity()
+  xpcall(function()
+
+    import "mod"--我的自定义库
+    import "my_bag"--软件基础设置和封装
+    import "tools"--辅助相关的封装代码
 
 
 
@@ -33,11 +41,11 @@ androlua+代码：biao
         orientation="horizontal";
         layout_height="-2";
         layout_width="fill";
-        --[[{
+       {
           Button;
           text="开启";
           id="button";
-        };]]
+        };
         {
           Button;
           text="刷新游客";
@@ -98,101 +106,6 @@ androlua+代码：biao
     setStatusBar(0)
 
 
-    if 读取缓存("模式")==nil then
-
-      local function rooton()
-
-        --申请root权限
-        Permission=os.execute("su")
-
-        if Permission!=true then
-          提示文字("没有root权限","无法运行app\n请给予权限或选择框架模式","确定",
-          function()
-            _G=nil
-            collectgarbage("collect")
-            activity.finish()
-            activity.overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out)
-            activity.newActivity("main")
-          end,true)
-         elseif Permission==true then
-          写入缓存("模式","root")
-          print("root")
-         else
-
-          local e="权限获取失败 Permission:\n"..tostring(Permission)
-
-          提示文字("发现错误",e.."\n\n ","反馈",
-          function()
-            复制文本(e.."\n\n")
-            提示("已复制错误信息",1)
-            QQ(2176909931)
-          end)
-
-        end
-
-
-      end
-
-      local function no_rooton ()
-
-        Permission=false;
-
-        写入缓存("模式","no_root")
-        print("框架")
-      end
-
-
-      --普通对话框
-      dl=AlertDialog.Builder(this)
-      .setTitle("请选择模式")
-      -- .setMessage("")
-      .setPositiveButton("root",{onClick=function(v) rooton() end})
-      .setNeutralButton("框架",{onClick=function(v) no_rooton() end})
-      -- .setNegativeButton("取消",nil)
-      .setCancelable(false)
-      .show()
-
-     elseif 读取缓存("模式")=="no_root" then
-
-      print("框架")
-      Permission=false;
-
-     elseif 读取缓存("模式")=="root" then
-      --申请root权限
-      Permission=os.execute("su")
-
-      if Permission!=true then
-        提示文字("没有root权限","无法运行app\n请给予权限或选择框架模式","确定",
-        function()
-          _G=nil
-          collectgarbage("collect")
-          activity.finish()
-          activity.overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out)
-          activity.newActivity("main")
-        end,true)
-       elseif Permission==true then
-
-        print("root")
-        写入缓存("模式","root")
-       else
-
-        local e="权限获取失败 Permission:\n"..tostring(Permission)
-
-        提示文字("发现错误",e.."\n\n ","反馈",
-        function()
-          复制文本(e.."\n\n")
-          提示("已复制错误信息",1)
-          QQ(2176909931)
-        end)
-
-      end
-     else
-      --强制结束自身并清除自身数据
-      os.execute("pm clear "..软件包名)
-
-    end
-
-
 
     to32.onClick=function()
       local mod=读取缓存("模式")
@@ -213,7 +126,7 @@ androlua+代码：biao
       end
     end
 
-    --[[   button.onClick=function()
+    button.onClick=function()
 
       --检查是否已经授予权限，大于6.0的系统适用，小于6.0系统默认打开，无需理会
       if Build.VERSION.SDK_INT >= 23 and Settings.canDrawOverlays(this)~=true then
@@ -223,15 +136,14 @@ androlua+代码：biao
         activity.startActivity(Intent(intent))
         print("请给予悬浮窗权限")
        else
-       -- modes()
+      modes()
        --目前没有啥内存功能关闭了
        
-       
-       
+   
       end
 
 
-    end]]
+    end
 
     button_2.onClick=function()
       pcall(function()
@@ -345,7 +257,7 @@ androlua+代码：biao
             columnCount="2";
             layout_marginTop="5dp";
 
-            --[[  {
+            {
               CheckBox;
               text="全枪射速";
               textSize="15sp";
@@ -365,7 +277,27 @@ androlua+代码：biao
                 end
               end;
             };
-]]
+            {
+              CheckBox;
+              text="全枪无后";
+              textSize="15sp";
+              textColor="#ffffff";
+              id="全枪无后";
+              OnCheckedChangeListener=function(v)
+
+                if 全枪无后.checked==true then
+
+                  execute({"res/so/qqwh"},"全枪无后:ON")
+
+                 else
+
+                  全枪无后.setChecked(true)
+                  print("现在不可关闭\n请结束掉游戏和本程序进程")
+
+                end
+              end;
+            };
+
 
 
 
@@ -883,4 +815,63 @@ biao8023.com/htm/sheng_shou_2.html
 
 
     ------------------------end
+
+
+
+  end,function(e)
+    xpcall(function()
+      翻译(e,function(s)
+        提示文字("发现错误",e.."\n\n "..s,"反馈",
+        function()
+          复制文本(e.."\n\n"..s)
+          提示("已复制错误信息",1)
+          QQ(2176909931)
+        end)
+      end)
+    end,function(e)
+      print(e)
+    end)
+  end)
+end
+
+function onCreate()
+  xpcall(function()
+    thread(function()
+      call("MainActivity")
+    end)
+  end,function(e)
+    xpcall(function()
+      翻译(e,function(s)
+        提示文字("发现错误",e.."\n\n "..s,"反馈",
+        function()
+          复制文本(e.."\n\n"..s)
+          提示("已复制错误信息",1)
+          QQ(2176909931)
+        end)
+      end)
+    end,function(e)
+      print(e)
+    end)
+  end)
+end
+
+
+--监听返回
+local shijian= 0
+function onKeyDown(code,event)
+  local now = os.time()
+  if string.find(tostring(event),"KEYCODE_BACK") ~= nil then
+    if shijian+2 > tonumber(os.time()) then
+      -- os.exit()
+      pcall(function()
+        closes()
+      end)
+      activity.finish()
+     else
+      print("再按一次退出键结束进程")
+    end
+    shijian=tonumber(os.time())
+    return true
+  end
+end
 
